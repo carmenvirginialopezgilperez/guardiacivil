@@ -40,7 +40,7 @@ def crear_auxilio():
 	text_gps = args.get("lugares", None)
 	text_fecha = args.get("fechaConocimiento", None)
 	text_persona = args.get("nombre", None)
-	text_un = {"properties": { "lugares": {text_gps}, "fechaConocimiento": text_fecha, "nombre", text_persona}}
+	text_un = {"properties": { "lugares": {text_gps}, "fechaConocimiento": text_fecha, "nombre": text_persona}}
 	json_data = json.dumps(text_un)
 	url = 'http://104.154.101.83/alias/?dni='
 	url_final = url + text_un
@@ -52,7 +52,7 @@ def crear_avistamiento():
 	text_gps = args.get("lugares", None)
 	text_fecha = args.get("fechaConocimiento", None)
 	text_persona = args.get("nombre", None)
-	text_un = {"properties": { "lugares": {text_gps}, "fechaConocimiento": text_fecha, "nombre", text_persona}}
+	text_un = {"properties": { "lugares": {text_gps}, "fechaConocimiento": text_fecha, "nombre": text_persona}}
 	json_data = json.dumps(text_un)
 	url = 'http://104.154.101.83/alias/?dni='
 	url_final = url + text_un
