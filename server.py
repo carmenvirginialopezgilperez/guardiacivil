@@ -10,7 +10,7 @@ def index():
 	return 'Yo, its working!'
 
 #http://127.0.0.1:5000/vehiculo/?matricula=12
-@app.route('/vehiculo', methods=["POST"])
+@app.route('/vehiculo', methods=["GET"])
 def vehiculo_preguntar():
 	text_un = request.json["matricula"]
 	data = {}
@@ -22,7 +22,7 @@ def vehiculo_preguntar():
 	# Response(json_data, status=200, mimetype="application/json")
 
 
-@app.route('/alias', methods=["POST"])
+@app.route('/alias', methods=["GET"])
 def persona_preguntar():
 	text_un = request.json["dni"]
 	data = {}
