@@ -4,7 +4,6 @@ from flask import Response
 from flask import request
 import json
 app = Flask(__name__)
-cors = CORS(server)
 @app.route('/')
 def index():
 	return 'Yo, its working!'
