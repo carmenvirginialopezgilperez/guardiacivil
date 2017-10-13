@@ -3,17 +3,18 @@ import requests
 from flask import Response
 from flask import request
 import json
+from flask_cors import CORS, cross_origin
 app = Flask(__name__)
-
+cors = CORS(server)
 @app.route('/')
 def index():
 	return 'Yo, its working!'
 
 #http://127.0.0.1:5000/vehiculo/?matricula=12
-@app.route('/vehiculo/', methods=["GET"])
+@app.route('/vehiculo/', methods=["POST"])
+@cross_origin(origin="*")
 def vehiculo_preguntar():
-	args = request.args
-	text_un = args.get("matricula", None)
+	text_un = request.json["matricula"]
 	data = {}
 	data['matricula'] = text_un
 	json_data = json.dumps(data)
@@ -23,10 +24,9 @@ def vehiculo_preguntar():
 	# Response(json_data, status=200, mimetype="application/json")
 
 
-@app.route('/alias/', methods=["GET"])
+@app.route('/alias/', methods=["POST"])
 def persona_preguntar():
-	args = request.args
-	text_un = args.get("dni", None)
+	text_un = request.json["dni"]
 	data = {}
 	data['dni'] = text_un
 	json_data = json.dumps(data)
