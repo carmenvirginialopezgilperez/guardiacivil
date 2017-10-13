@@ -13,7 +13,6 @@ def index():
 
 #http://127.0.0.1:5000/vehiculo/?matricula=12
 @app.route('/vehiculo', methods=["POST"])
-@cross_origin(origin="*")
 def vehiculo_preguntar():
 	text_un = request.json["matricula"]
 	data = {}
@@ -62,4 +61,3 @@ def crear_avistamiento():
 
 if __name__ == "__main__":
 	app.run()
-
