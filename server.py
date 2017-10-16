@@ -14,10 +14,13 @@ def index():
 #http://127.0.0.1:5000/vehiculo/?matricula=12
 @app.route('/vehiculo', methods=["POST"])
 def vehiculo_preguntar():
-	text_pa = request.json
+	text_total = request.json
+	text_result = text_pa["result"]
+	print(text_result)
+	text_pa = text_result["parameters"]
 	print(text_pa)
-	text_un = text_pa["result"]
-	print(text_un)
+	text_un = text_pa["matricula"]
+	print("text_un")
 	data = {}
 	data['matricula'] = text_un
 	json_data = json.dumps(data)
