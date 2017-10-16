@@ -26,22 +26,16 @@ def vehiculo_preguntar():
 	respuesta = requests.get(url_final).content
 	my_json = respuesta.decode('utf8').replace("'", '"')
 	datajson = json.loads(my_json)
-	res = json.dumps(datajson, indent=4, sort_keys=True)
-	print(datajson)
-	print(res)
 	respuesta_pro = datajson["properties"]
 	respuesta_modelo = respuesta_pro["modelo"]
-	print(respuesta_modelo)
 	respuesta_marca1 = respuesta_pro["marca"]
 	respuesta_marca = respuesta_marca1["descripcionLarga"]
-	print(respuesta_marca)
 	respuesta_bastidor = respuesta_pro["numeroBastidor"]
-	print(respuesta_bastidor)
 	respuesta_color1 = respuesta_pro["colorPrimario"]
 	respuesta_color = respuesta_color1["descripcionLarga"]
-	print(respuesta_color)
 	respuesta_matricula = respuesta_pro["matricula"]
-	print(respuesta_matricula)
+	final = "El vehículo con matricula "+respuesta_matricula+"es de la marca"+respuesta_marca+" su modelo es "+respuesta_modelo+" de color "+respuesta_color+" y con número de bastidor "+respuesta_bastidor+"."
+	print(final)
 	return requests.get(url_final).content
 	# Response(json_data, status=200, mimetype="application/json")
 
