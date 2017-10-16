@@ -15,10 +15,8 @@ def index():
 @app.route('/vehiculo', methods=["POST"])
 def vehiculo_preguntar():
 	print(request.json)
-	text_pa = request.json
-	text_unpa = json.dumps(text_pa)
-	print(text_unpa)
-	text_un = text_unpa["parameters"]
+	text_pa = request.json('result')
+	text_un = text_pa["parameters"]
 	print(text_un)
 	data = {}
 	data['matricula'] = text_un
