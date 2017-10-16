@@ -24,6 +24,7 @@ def vehiculo_preguntar():
 	url = 'http://104.154.101.83/vehiculo/?matricula='
 	url_final = url + text_un
 	respuesta = requests.get(url_final).content
+	print(respuesta)
 	res = respuesta[0]
 	print(res)
 	respuesta_pro = res[0]
