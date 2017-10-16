@@ -14,9 +14,9 @@ def index():
 #http://127.0.0.1:5000/vehiculo/?matricula=12
 @app.route('/vehiculo', methods=["POST"])
 def vehiculo_preguntar():
-	print(request.json)
-	text_pa = request.json('result')
-	text_un = text_pa["parameters"]
+	text_pa = request.json
+	print(text_pa)
+	text_un = text_pa["result"]
 	print(text_un)
 	data = {}
 	data['matricula'] = text_un
