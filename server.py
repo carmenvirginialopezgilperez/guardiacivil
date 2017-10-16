@@ -23,7 +23,20 @@ def vehiculo_preguntar():
 	json_data = json.dumps(data)
 	url = 'http://104.154.101.83/vehiculo/?matricula='
 	url_final = url + text_un
-	print(requests.get(url_final).content)
+	respuesta = requests.get(url_final).content
+	respuesta_pro = repuesta["properties"]
+	respuesta_modelo = respuesta_pro["modelo"]
+	print(respuesta_modelo)
+	respuesta_marca1 = respuesta_pro["marca"]
+	respuesta_marca = respuesta_marca1["descripcionLarga"]
+	print(respuesta_marca)
+	respuesta_bastidor = respuesta_pro["numeroBastidor"]
+	print(respuesta_bastidor)
+	respuesta_color1 = respuesta_pro["colorPrimario"]
+	respuesta_color = respuesta_color1["descripcionLarga"]
+	print(respuesta_color)
+	respuesta_matricula = respuesta_pro["matricula"]
+	print(respuesta_matricula)
 	return requests.get(url_final).content
 	# Response(json_data, status=200, mimetype="application/json")
 
