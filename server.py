@@ -1,7 +1,7 @@
 from flask import Flask
 import requests
 from flask import Response
-from flask import request
+from flask import request, jsonify
 import json
 from flask_cors import cross_origin, CORS
 app = Flask(__name__)
@@ -15,10 +15,7 @@ def index():
 @app.route('/vehiculo', methods=["POST"])
 def vehiculo_preguntar():
 	print("entro")
-	if request.json['matricula'] is not None: 
-		print(request.json['matricula'])
-	else:
-		print("soy nulo")
+	print(request.get_json(matricula=True))
 	text_un = request.json['matricula']
 	print(text_un)
 	data = {}
