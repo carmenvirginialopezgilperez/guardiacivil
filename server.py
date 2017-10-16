@@ -36,8 +36,9 @@ def vehiculo_preguntar():
 	respuesta_matricula = respuesta_pro["matricula"]
 	final = "El vehículo con matricula "+respuesta_matricula+"es de la marca"+respuesta_marca+" su modelo es "+respuesta_modelo+" de color "+respuesta_color+" y con número de bastidor "+respuesta_bastidor+"."
 	print(final)
-	return requests.get(url_final).content
-	# Response(json_data, status=200, mimetype="application/json")
+	final_texto['result'] = final
+	json_data_final = json.dumps(final_texto)
+	Response(json_data_final, status=200, mimetype="application/json")
 
 
 @app.route('/alias', methods=["POST"])
