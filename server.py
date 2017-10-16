@@ -38,6 +38,7 @@ def vehiculo_preguntar():
 	final_texto = { "speech": final, "displayText": final, "data": {},"contextOut": [],"source": "" }
 	#final_texto['Body'] = final_texto
 	json_data_final = json.dumps(final_texto)
+	print(json_data_final)
 	#return Response(headers={'Content-type': 'application/json'}, body=final_texto)
 	return Response(json_data_final, status=200, mimetype="application/json")
 
