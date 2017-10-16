@@ -15,10 +15,11 @@ def index():
 @app.route('/vehiculo', methods=["POST"])
 def vehiculo_preguntar():
 	print("entro")
-	if request is None:
-		print("vacio")
-	else:
-		print(request.json['matricula'])
+	try:
+        	print(request.json['matricula'])
+    	except TypeError:
+        	print request, request.json['matricula']
+        	raise
 	text_un = request.json['matricula']
 	print(text_un)
 	data = {}
