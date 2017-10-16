@@ -18,19 +18,22 @@ def vehiculo_preguntar():
 	text_result = text_total["result"]
 	text_pa = text_result["parameters"]
 	text_un = text_pa["matricula"]
-	print(text_un)
 	data = {}
 	data['matricula'] = text_un
 	json_data = json.dumps(data)
 	url = 'http://104.154.101.83/vehiculo/?matricula='
 	url_final = url + text_un
+	print(requests.get(url_final).content)
 	return requests.get(url_final).content
 	# Response(json_data, status=200, mimetype="application/json")
 
 
 @app.route('/alias', methods=["POST"])
 def persona_preguntar():
-	text_un = request.json["dni"]
+	text_total = request.json
+	text_result = text_total["result"]
+	text_pa = text_result["parameters"]
+	text_un = text_pa["dni"]
 	data = {}
 	data['dni'] = text_un
 	json_data = json.dumps(data)
