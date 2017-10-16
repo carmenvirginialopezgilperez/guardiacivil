@@ -29,7 +29,7 @@ def vehiculo_preguntar():
 	res = json.dumps(datajson, indent=4, sort_keys=True)
 	print(datajson)
 	print(res)
-	respuesta_pro = res["properties"]
+	respuesta_pro = datajson["properties"]
 	respuesta_modelo = respuesta_pro["modelo"]
 	print(respuesta_modelo)
 	respuesta_marca1 = respuesta_pro["marca"]
