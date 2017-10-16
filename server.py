@@ -16,8 +16,9 @@ def index():
 def vehiculo_preguntar():
 	print("entro")
 	print(request.json)
+	text_pa = request.json['parameters']
+	print(text_pa)
 	text_un = request.json['matricula']
-	print(text_un)
 	data = {}
 	data['matricula'] = text_un
 	json_data = json.dumps(data)
