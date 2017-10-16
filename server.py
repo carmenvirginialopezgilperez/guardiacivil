@@ -35,9 +35,8 @@ def vehiculo_preguntar():
 	respuesta_color = respuesta_color1["descripcionLarga"]
 	respuesta_matricula = respuesta_pro["matricula"]
 	final = "El vehículo con matricula "+respuesta_matricula+"es de la marca"+respuesta_marca+" su modelo es "+respuesta_modelo+" de color "+respuesta_color+" y con número de bastidor "+respuesta_bastidor+"."
-	print(final)
-	final_texto = {}
-	final_texto['result'] = final
+	final_texto = { "speech": final, "displayText": final, "data": {},"contextOut": [],"source": "" }
+	final_texto['Body'] = final_texto
 	json_data_final = json.dumps(final_texto)
 	return Response(json_data_final, status=200, mimetype="application/json")
 
