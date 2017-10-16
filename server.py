@@ -27,7 +27,7 @@ def vehiculo_preguntar():
 	my_json = respuesta.decode('utf8').replace("'", '"')
 	datajson = json.loads(my_json)
 	res = json.dumps(datajson, indent=4, sort_keys=True)
-	print(datajon)
+	print(datajson)
 	print(res)
 	respuesta_pro = res["properties"]
 	respuesta_modelo = respuesta_pro["modelo"]
