@@ -25,7 +25,8 @@ def vehiculo_preguntar():
 	url_final = url + text_un
 	respuesta = requests.get(url_final).content
 	res = respuesta[0]
-	respuesta_pro = res["properties"]
+	print(res)
+	respuesta_pro = res[0]
 	respuesta_modelo = respuesta_pro["modelo"]
 	print(respuesta_modelo)
 	respuesta_marca1 = respuesta_pro["marca"]
