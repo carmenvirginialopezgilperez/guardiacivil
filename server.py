@@ -15,7 +15,7 @@ def index():
 @app.route('/vehiculo', methods=["POST"])
 def vehiculo_preguntar():
 	text_total = request.json
-	text_result = text_pa["result"]
+	text_result = text_total["result"]
 	print(text_result)
 	text_pa = text_result["parameters"]
 	print(text_pa)
