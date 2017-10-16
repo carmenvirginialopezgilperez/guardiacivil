@@ -38,7 +38,10 @@ def vehiculo_preguntar():
 	final_texto = { "speech": final, "displayText": final, "data": {},"contextOut": [],"source": "" }
 	#final_texto['Body'] = final_texto
 	#json_data_final = json.dumps(final_texto)
-	return Response(final_texto, status=200, mimetype="application/json")
+	return Response(headers={
+                            'Content-type': 'application/json'
+                        }, body=final_texto)
+	#return Response(final_texto, status=200, mimetype="application/json")
 
 
 @app.route('/alias', methods=["POST"])
