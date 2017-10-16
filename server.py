@@ -24,10 +24,12 @@ def vehiculo_preguntar():
 	url = 'http://104.154.101.83/vehiculo/?matricula='
 	url_final = url + text_un
 	respuesta = requests.get(url_final).content
-	print(respuesta)
-	res = respuesta[0]
+	my_json = respuesta.decode('utf8').replace("'", '"')
+	datajson = json.loads(my_json)
+	res = json.dumps(datajson, indent=4, sort_keys=True)
+	print(datajon)
 	print(res)
-	respuesta_pro = res[0]
+	respuesta_pro = res["properties"]
 	respuesta_modelo = respuesta_pro["modelo"]
 	print(respuesta_modelo)
 	respuesta_marca1 = respuesta_pro["marca"]
