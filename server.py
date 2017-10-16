@@ -15,11 +15,7 @@ def index():
 @app.route('/vehiculo', methods=["POST"])
 def vehiculo_preguntar():
 	print("entro")
-	try:
-        	print(request.json['matricula'])
-    	except TypeError:
-        	print request, request.json['matricula']
-        	raise
+	print(request.json['matricula'])
 	text_un = request.json['matricula']
 	print(text_un)
 	data = {}
