@@ -40,7 +40,7 @@ def vehiculo_preguntar():
 	json_data_final = json.dumps(final_texto)
 	#print(json_data_final)
 	#return Response(headers={'Content-type': 'application/json'}, body=final_texto)
-	return Response(final_texto, status=200, mimetype="application/json")
+	return Response(json_data_final, status=200, mimetype="application/json")
 
 
 @app.route('/alias', methods=["POST"])
