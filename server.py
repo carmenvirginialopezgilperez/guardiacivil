@@ -37,13 +37,10 @@ def vehiculo_preguntar():
 	respuesta_color1 = respuesta_pro["colorPrimario"]
 	respuesta_color = respuesta_color1["descripcionLarga"]
 	respuesta_matricula = respuesta_pro["matricula"]
-	final = "El vehículo con matricula "+respuesta_matricula+"es de la marca"+respuesta_marca+" su modelo es "+respuesta_modelo+" de color "+respuesta_color+" y con número de bastidor "+respuesta_bastidor+"."
+	final = "El vehículo con matricula "+respuesta_matricula+"es de la marca "+respuesta_marca+" su modelo es "+respuesta_modelo+" de color "+respuesta_color+" y con número de bastidor "+respuesta_bastidor+"."
 	final_texto={"speech":final,"displayText":final,"data":{},"contextOut":[],"source":"webhook"}
-	resp = Response(final_texto, status=200, mimetype="application/json")
-	print(resp)
 	json_data_final = json.dumps(final_texto)
-	ress= Response(json_data_final, status=200, mimetype="application/json")
-	return ress
+	return Response(json_data_final, status=200, mimetype="application/json")
 
 
 @app.route('/alias', methods=["POST"])
@@ -57,7 +54,19 @@ def persona_preguntar():
 	json_data = json.dumps(data)
 	url = 'http://104.154.101.83/alias/?dni='
 	url_final = url + text_un
-	return requests.get(url_final).content
+	respuesta = requests.get(url_final).content
+	s = requests.session()
+	s.keep_alive = False
+	my_json = respuesta.decode('utf8').replace("'", '"')
+	datajson = json.loads(my_json)
+	respuesta_pro = datajson["properties"]
+	respuesta_re = respuesta_pro["resenas"]
+	respuesta_item = respuesta_re["items"]
+	respuesta_img = respuesta_item["ref"]
+	final = "La url de la imagen con dni "+text_un+" es " +respuesta_img
+	final_texto={"speech":final,"displayText":final,"data":{},"contextOut":[],"source":"webhook"}
+	json_data_final = json.dumps(final_texto)
+	return Response(json_data_final, status=200, mimetype="application/json")
 
 @app.route('/auxilio/', methods=["GET"])
 def crear_auxilio():
