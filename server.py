@@ -39,8 +39,11 @@ def vehiculo_preguntar():
 	respuesta_matricula = respuesta_pro["matricula"]
 	final = "El vehículo con matricula "+respuesta_matricula+"es de la marca"+respuesta_marca+" su modelo es "+respuesta_modelo+" de color "+respuesta_color+" y con número de bastidor "+respuesta_bastidor+"."
 	final_texto={"speech":final,"displayText":final,"data":{},"contextOut":[],"source":"webhook"}
-	#json_data_final = json.dumps(text_inter)
-	return Response(final_texto, status=200, mimetype="application/json")
+	resp = Response(final_texto, status=200, mimetype="application/json")
+	print(resp)
+	json_data_final = json.dumps(final_texto)
+	ress= Response(json_data_final, status=200, mimetype="application/json")
+	return ress
 
 
 @app.route('/alias', methods=["POST"])
