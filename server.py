@@ -68,29 +68,55 @@ def persona_preguntar():
 	json_data_final = json.dumps(final_texto)
 	return Response(json_data_final, status=200, mimetype="application/json")
 
-@app.route('/auxilio/', methods=["GET"])
+@app.route('/auxilio', methods=["POST"])
 def crear_auxilio():
-	args = request.args
-	text_gps = args.get("lugares", None)
-	text_fecha = args.get("fechaConocimiento", None)
-	text_persona = args.get("nombre", None)
-	text_un = {"properties": { "lugares": {text_gps}, "fechaConocimiento": text_fecha, "nombre": text_persona}}
-	json_data = json.dumps(text_un)
-	url = 'http://104.154.101.83/alias/?dni='
+	text_total = request.json
+	text_result = text_total["result"]
+	text_pa = text_result["parameters"]
+	text_un = text_pa["dni"]
+	data = {}
+	data['dni'] = text_un
+	json_data = json.dumps(data)
+	url = 'http://104.154.101.83/auxilio/?dni='
 	url_final = url + text_un
-	return requests.get(url_final).content
+	respuesta = requests.get(url_final).content
+	s = requests.session()
+	s.keep_alive = False
+	my_json = respuesta.decode('utf8').replace("'", '"')
+	datajson = json.loads(my_json)
+	respuesta_pro = datajson["properties"]
+	respuesta_re = respuesta_pro["resenas"]
+	respuesta_item = respuesta_re["items"]
+	respuesta_img = respuesta_item["ref"]
+	final = "Registrado auxilio"
+	final_texto={"speech":final,"displayText":final,"data":{},"contextOut":[],"source":"webhook"}
+	json_data_final = json.dumps(final_texto)
+	return Response(json_data_final, status=200, mimetype="application/json")
 
-@app.route('/avistamiento/', methods=["GET"])
+@app.route('/avistamiento', methods=["POST"])
 def crear_avistamiento():
-	args = request.args
-	text_gps = args.get("lugares", None)
-	text_fecha = args.get("fechaConocimiento", None)
-	text_persona = args.get("nombre", None)
-	text_un = {"properties": { "lugares": {text_gps}, "fechaConocimiento": text_fecha, "nombre": text_persona}}
-	json_data = json.dumps(text_un)
-	url = 'http://104.154.101.83/alias/?dni='
+	text_total = request.json
+	text_result = text_total["result"]
+	text_pa = text_result["parameters"]
+	text_un = text_pa["matricula"]
+	data = {}
+	data['dni'] = text_un
+	json_data = json.dumps(data)
+	url = 'http://104.154.101.83/avistamiento/?matricula='
 	url_final = url + text_un
-	return requests.get(url_final).content
+	respuesta = requests.get(url_final).content
+	s = requests.session()
+	s.keep_alive = False
+	my_json = respuesta.decode('utf8').replace("'", '"')
+	datajson = json.loads(my_json)
+	respuesta_pro = datajson["properties"]
+	respuesta_re = respuesta_pro["resenas"]
+	respuesta_item = respuesta_re["items"]
+	respuesta_img = respuesta_item["ref"]
+	final = "Registrado avistamiento"
+	final_texto={"speech":final,"displayText":final,"data":{},"contextOut":[],"source":"webhook"}
+	json_data_final = json.dumps(final_texto)
+	return Response(json_data_final, status=200, mimetype="application/json")
 
 
 if __name__ == "__main__":
