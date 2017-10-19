@@ -1,6 +1,6 @@
 from flask import Flask
 import requests
-from flask import Response
+from flask import Response, make_response
 from flask import request, jsonify
 import json
 from flask_cors import cross_origin, CORS
@@ -38,13 +38,34 @@ def vehiculo_preguntar():
 	respuesta_matricula = respuesta_pro["matricula"]
 	final = "El vehículo con matricula "+respuesta_matricula+"es de la marca"+respuesta_marca+" su modelo es "+respuesta_modelo+" de color "+respuesta_color+" y con número de bastidor "+respuesta_bastidor+"."
 	final_texto = { "speech": final, "displayText": final, "data": {},"contextOut": [],"source": "" }
-	text_inter = {}
-	text_inter['Body'] = final_texto
-	print(text_inter)
-	json_data_final = json.dumps(text_inter)
-	print(json_data_final)
+	
+	response_final = {
+            'speech': final,
+	    'displayText': final,
+            'messages': '',
+            'data': {
+                'google': {  # TODO: may be depreciated
+                    "expect_user_response": True,
+                    "is_ssml": True,
+                    "permissions_request": None,
+                }
+            },
+            'contextOut': [],
+            'source': 'webhook'
+        }
+	
+	resp = json.dumps(response_final, indent=4)
+        resp = make_response(resp)
+        resp.headers['Content-Type'] = 'application/json'
+        return resp
+	
+	#text_inter = {}
+	#text_inter['Body'] = final_texto
+	#print(text_inter)
+	#json_data_final = json.dumps(text_inter)
+	#print(json_data_final)
 	#return Response(headers={'Content-type': 'application/json'}, body=final_texto)
-	return Response(json_data_final, status=200, mimetype="application/json")
+	#return Response(json_data_final, status=200, mimetype="application/json")
 
 
 @app.route('/alias', methods=["POST"])
