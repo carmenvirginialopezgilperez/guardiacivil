@@ -77,7 +77,7 @@ def crear_auxilio():
 	data = {}
 	data['dni'] = text_un
 	json_data = json.dumps(data)
-	url = 'http://104.154.101.83/auxilio/?dni='
+	url = 'http://104.154.101.83/registro/?id='
 	url_final = url + text_un
 	respuesta = requests.get(url_final).content
 	s = requests.session()
@@ -99,7 +99,7 @@ def crear_identificacion():
 	data = {}
 	data['dni'] = text_un
 	json_data = json.dumps(data)
-	url = 'http://104.154.101.83/auxilio/?dni='
+	url = 'http://104.154.101.83/registro/?id='
 	url_final = url + text_un
 	respuesta = requests.get(url_final).content
 	s = requests.session()
@@ -121,7 +121,7 @@ def crear_avistamiento():
 	data = {}
 	data['dni'] = text_un
 	json_data = json.dumps(data)
-	url = 'http://104.154.101.83/avistamiento/?matricula='
+	url = 'http://104.154.101.83/registro/?id='
 	url_final = url + text_un
 	respuesta = requests.get(url_final).content
 	s = requests.session()
