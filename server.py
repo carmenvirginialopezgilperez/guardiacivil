@@ -84,10 +84,7 @@ def crear_auxilio():
 	s.keep_alive = False
 	my_json = respuesta.decode('utf8').replace("'", '"')
 	datajson = json.loads(my_json)
-	respuesta_pro = datajson["properties"]
-	respuesta_re = respuesta_pro["resenas"]
-	respuesta_item = respuesta_re["items"]
-	respuesta_img = respuesta_item["ref"]
+	respuesta_pro = datajson["respuesta"]
 	final = "Registrado auxilio"
 	final_texto={"speech":final,"displayText":final,"data":{},"contextOut":[],"source":"webhook"}
 	json_data_final = json.dumps(final_texto)
@@ -109,10 +106,7 @@ def crear_identificacion():
 	s.keep_alive = False
 	my_json = respuesta.decode('utf8').replace("'", '"')
 	datajson = json.loads(my_json)
-	respuesta_pro = datajson["properties"]
-	respuesta_re = respuesta_pro["resenas"]
-	respuesta_item = respuesta_re["items"]
-	respuesta_img = respuesta_item["ref"]
+	respuesta_pro = datajson["respuesta"]
 	final = "Registrada identificacion"
 	final_texto={"speech":final,"displayText":final,"data":{},"contextOut":[],"source":"webhook"}
 	json_data_final = json.dumps(final_texto)
@@ -134,10 +128,7 @@ def crear_avistamiento():
 	s.keep_alive = False
 	my_json = respuesta.decode('utf8').replace("'", '"')
 	datajson = json.loads(my_json)
-	respuesta_pro = datajson["properties"]
-	respuesta_re = respuesta_pro["resenas"]
-	respuesta_item = respuesta_re["items"]
-	respuesta_img = respuesta_item["ref"]
+	respuesta_pro = datajson["respuesta"]
 	final = "Registrado avistamiento"
 	final_texto={"speech":final,"displayText":final,"data":{},"contextOut":[],"source":"webhook"}
 	json_data_final = json.dumps(final_texto)
