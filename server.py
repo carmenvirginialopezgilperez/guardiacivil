@@ -3,6 +3,7 @@ import requests
 from flask import Response, make_response
 from flask import request, jsonify
 import json
+from flask_assistant import core
 from flask_cors import cross_origin, CORS
 app = Flask(__name__)
 cors = CORS(app)
@@ -39,6 +40,7 @@ def vehiculo_preguntar():
 	final = "El vehículo con matricula "+respuesta_matricula+"es de la marca"+respuesta_marca+" su modelo es "+respuesta_modelo+" de color "+respuesta_color+" y con número de bastidor "+respuesta_bastidor+"."
 	final_texto={"speech":final,"displayText":final,"data":{},"contextOut":[],"source":"webhook"}
 	
+	core._dbgdump(final_texto)
 	resp = json.dumps(final_texto, indent=4)
         resp = make_response(resp)
         resp.headers['Content-Type'] = 'application/json'
