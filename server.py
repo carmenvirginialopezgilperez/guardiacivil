@@ -41,7 +41,7 @@ def vehiculo_preguntar():
 	text_inter = {}
 	text_inter['Body'] = final_texto
 	print(text_inter)
-	json_data_final = json.dumps(final_texto2)
+	json_data_final = json.dumps(text_inter)
 	print(json_data_final)
 	#return Response(headers={'Content-type': 'application/json'}, body=final_texto)
 	return Response(json_data_final, status=200, mimetype="application/json")
