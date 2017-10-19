@@ -21,7 +21,7 @@ def vehiculo_preguntar():
 	data = {}
 	data['matricula'] = text_un
 	json_data = json.dumps(data)
-	url = 'http://104.154.101.83/vehiculo/?matricula='
+	url = 'http://104.154.101.83/vehiculos/?matricula='
 	url_final = url + text_un
 	respuesta = requests.get(url_final).content
 	s = requests.session()
