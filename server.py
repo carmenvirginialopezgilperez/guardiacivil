@@ -93,6 +93,31 @@ def crear_auxilio():
 	json_data_final = json.dumps(final_texto)
 	return Response(json_data_final, status=200, mimetype="application/json")
 
+@app.route('/identificacion', methods=["POST"])
+def crear_identificacion():
+	text_total = request.json
+	text_result = text_total["result"]
+	text_pa = text_result["parameters"]
+	text_un = text_pa["dni"]
+	data = {}
+	data['dni'] = text_un
+	json_data = json.dumps(data)
+	url = 'http://104.154.101.83/auxilio/?dni='
+	url_final = url + text_un
+	respuesta = requests.get(url_final).content
+	s = requests.session()
+	s.keep_alive = False
+	my_json = respuesta.decode('utf8').replace("'", '"')
+	datajson = json.loads(my_json)
+	respuesta_pro = datajson["properties"]
+	respuesta_re = respuesta_pro["resenas"]
+	respuesta_item = respuesta_re["items"]
+	respuesta_img = respuesta_item["ref"]
+	final = "Registrada identificacion"
+	final_texto={"speech":final,"displayText":final,"data":{},"contextOut":[],"source":"webhook"}
+	json_data_final = json.dumps(final_texto)
+	return Response(json_data_final, status=200, mimetype="application/json")
+
 @app.route('/avistamiento', methods=["POST"])
 def crear_avistamiento():
 	text_total = request.json
