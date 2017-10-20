@@ -22,7 +22,7 @@ def index():
 		response_index = vehiculo_preguntar()
 	elif text_consulta == "3":
 		response_index = crear_identificacion()
-	elif text_cosulta == "4":
+	elif text_consulta == "4":
 		response_index = crear_avistamiento()
 	else:
 		response_index = crear_auxilio()
