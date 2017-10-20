@@ -15,21 +15,24 @@ def index():
 	text_result = text_total["result"]
 	text_pa = text_result["parameters"]
 	text_consulta = text_pa["consulta"]
-	print(text_consulta)
 	if text_consulta == "1":
 		response_index = persona_preguntar()
-	if text_consulta == "2":
+	elif text_consulta == "2":
 		print("consulta vehiculo")
 		response_index = vehiculo_preguntar()
-		
-	print(response_index)	
+	elif text_consulta == "3":
+		response_index = crear_identificacion()
+	elif text_cosulta == "4":
+		response_index = crear_avistamiento()
+	else:
+		response_index = crear_auxilio()
 	return response_index
 
 @app.route('/vehiculos', methods=["POST"])
 def vehiculo_preguntar():
-	#text_total1 = request.json
-	#text_result1 = text_total1["result"]
-	#text_pa1 = text_result1["parameters"]
+	text_total = request.json
+	text_result = text_total["result"]
+	text_pa = text_result["parameters"]
 	text_un = text_pa["matricula"]
 	data = {}
 	data['matricula'] = text_un
@@ -58,9 +61,9 @@ def vehiculo_preguntar():
 
 @app.route('/alias', methods=["POST"])
 def persona_preguntar():
-	#text_total = request.json
-	#text_result = text_total["result"]
-	#text_pa = text_result["parameters"]
+	text_total = request.json
+	text_result = text_total["result"]
+	text_pa = text_result["parameters"]
 	text_un = text_pa["dni"]
 	data = {}
 	data['dni'] = text_un
