@@ -14,9 +14,9 @@ def index():
 	text_result = text_total["result"]
 	text_pa = text_result["parameters"]
 	text_consulta = text_pa["consulta"]
-	if consulta == 1:
+	if text_consulta == 1:
 		persona_preguntar()
-	else if consulta == 2:
+	if text_consulta == 2:
 		vehiculo_preguntar()
 	return 'Yo, its working!'
 
