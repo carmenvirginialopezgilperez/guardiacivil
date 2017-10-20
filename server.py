@@ -34,6 +34,7 @@ def vehiculo_preguntar():
 	text_result = text_total["result"]
 	text_pa = text_result["parameters"]
 	text_un = text_pa["matricula"]
+	text_un = text_un.replace(" ", "")
 	data = {}
 	data['matricula'] = text_un
 	json_data = json.dumps(data)
@@ -65,6 +66,7 @@ def persona_preguntar():
 	text_result = text_total["result"]
 	text_pa = text_result["parameters"]
 	text_un = text_pa["dni"]
+	text_un = text_un.replace(" ", "")
 	data = {}
 	data['dni'] = text_un
 	json_data = json.dumps(data)
@@ -90,6 +92,7 @@ def crear_auxilio():
 	text_result = text_total["result"]
 	text_pa = text_result["parameters"]
 	text_un = text_pa["dni"]
+	text_un = text_un.replace(" ", "")
 	data = {}
 	data['dni'] = text_un
 	json_data = json.dumps(data)
@@ -112,6 +115,7 @@ def crear_identificacion():
 	text_result = text_total["result"]
 	text_pa = text_result["parameters"]
 	text_un = text_pa["dni"]
+	text_un = text_un.replace(" ", "")
 	data = {}
 	data['dni'] = text_un
 	json_data = json.dumps(data)
@@ -134,6 +138,7 @@ def crear_avistamiento():
 	text_result = text_total["result"]
 	text_pa = text_result["parameters"]
 	text_un = text_pa["matricula"]
+	text_un = text_un.replace(" ", "")
 	data = {}
 	data['dni'] = text_un
 	json_data = json.dumps(data)
