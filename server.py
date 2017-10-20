@@ -22,6 +22,7 @@ def index():
 	if text_consulta == 2:
 		response_index = vehiculo_preguntar()
 		
+	print(response_index)	
 	return response_index
 
 @app.route('/vehiculos', methods=["POST"])
