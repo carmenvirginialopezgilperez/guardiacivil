@@ -10,15 +10,18 @@ cors = CORS(app)
 
 @app.route('/')
 def index():
+	response_index = ""
 	text_total = request.json
 	text_result = text_total["result"]
 	text_pa = text_result["parameters"]
 	text_consulta = text_pa["consulta"]
+	print(text_consulta)
 	if text_consulta == 1:
-		persona_preguntar()
+		response_index = persona_preguntar()
 	if text_consulta == 2:
-		vehiculo_preguntar()
-	return 'Yo, its working!'
+		response_index = vehiculo_preguntar()
+		
+	return response_index
 
 @app.route('/vehiculos', methods=["POST"])
 def vehiculo_preguntar():
