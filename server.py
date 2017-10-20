@@ -8,9 +8,10 @@ from flask_cors import cross_origin, CORS
 app = Flask(__name__)
 cors = CORS(app)
 
-@app.route('/')
+@app.route('/', methods=["POST"])
 def index():
 	response_index = ""
+	print("entro")
 	text_total = request.json
 	text_result = text_total["result"]
 	text_pa = text_result["parameters"]
