@@ -27,10 +27,10 @@ def index():
 
 @app.route('/vehiculos', methods=["POST"])
 def vehiculo_preguntar():
-	text_total1 = request.json
-	text_result1 = text_total1["result"]
-	text_pa1 = text_result1["parameters"]
-	text_un = text_pa1["matricula"]
+	#text_total1 = request.json
+	#text_result1 = text_total1["result"]
+	#text_pa1 = text_result1["parameters"]
+	text_un = text_pa["matricula"]
 	data = {}
 	data['matricula'] = text_un
 	json_data = json.dumps(data)
@@ -58,9 +58,9 @@ def vehiculo_preguntar():
 
 @app.route('/alias', methods=["POST"])
 def persona_preguntar():
-	text_total = request.json
-	text_result = text_total["result"]
-	text_pa = text_result["parameters"]
+	#text_total = request.json
+	#text_result = text_total["result"]
+	#text_pa = text_result["parameters"]
 	text_un = text_pa["dni"]
 	data = {}
 	data['dni'] = text_un
