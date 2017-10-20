@@ -16,9 +16,9 @@ def index():
 	text_pa = text_result["parameters"]
 	text_consulta = text_pa["consulta"]
 	print(text_consulta)
-	if text_consulta == 1:
+	if text_consulta == "1":
 		response_index = persona_preguntar()
-	if text_consulta == 2:
+	if text_consulta == "2":
 		print("consulta vehiculo")
 		response_index = vehiculo_preguntar()
 		
