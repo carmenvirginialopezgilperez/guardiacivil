@@ -1,22 +1,36 @@
-from flask import Flask, render_template
-import requests
-from flask import Response, make_response
-from flask import request, jsonify
-import json
-from flask_assistant import core
-from flask_cors import cross_origin, CORS
+from selenium.webdriver.common.keys import Keys
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import argparse
 
+from flask import Flask, request, Response, render_template, send_from_directory
+from flask_cors import CORS, cross_origin
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path="")
 cors = CORS(app)
 
-if __name__ == "__main__":
-	app.run()
+@app.route("/selenium", methods=["POST"])
+@cross_origin("*")
+def selenium():
+	driver = webdriver.PhantomJS()
+	endpoint = "FashionWeek"
+	url = "https://twitter.com/"
+	url_final = url + endpoint
+	driver.get(url_final)
+	driver.implicitly_wait(10)
+	lista_tweets = driver.find_elements_by_tag_name('p')
+	tweets = ""
+	for tweet in lista_tweets:
+		tweets += tweet.text
+	print(tweets)
+	return tweets
 
-@app.route("/", methods=["GET"])
-def index():
-    return render_template("index.html")
+if __name__ == '__main__':
+	app.run("0.0.0.0", 6060)
+	print("hola")
+	selenium()
 	
 
 	
