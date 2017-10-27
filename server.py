@@ -26,7 +26,7 @@ def selenium():
 	print(tweets)
 	return tweets
 
-@server.route("/", methods=["GET"])
+@app.route("/", methods=["GET"])
 def hola():
 	print("hola")
 	
