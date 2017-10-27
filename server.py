@@ -27,6 +27,9 @@ def selenium():
 	return tweets
 
 @server.route("/", methods=["GET"])
+def hola():
+	print("hola")
+	
 if __name__ == '__main__':
 	app.run("0.0.0.0", 80)
 	print("hola")
