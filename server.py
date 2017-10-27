@@ -16,6 +16,14 @@ import argparse
 app = Flask(__name__)
 cors = CORS(app)
 
+
+if __name__ == "__main__":
+	app.run()
+
+@app.route('/')
+def index():
+	return 'Yo, its working!'
+
 @app.route("/selenium/", methods=["GET"])
 @cross_origin("*")
 def selenium():
@@ -64,8 +72,5 @@ def vehiculo_preguntar():
 	json_data_final = json.dumps(final_texto)
 	print(json_data_final)
 	return Response(json_data_final, status=200, mimetype="application/json"
-
-if __name__ == "__main__":
-	app.run()
 
 	
