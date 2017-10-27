@@ -1,0 +1,319 @@
+<html>
+<head>
+	<title>Guardia Civil</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="css/style.css">
+
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Bubbler+One|Nunito" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="js/utils.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		var accessToken = "f06dfe3ea10147a5b9bf68a5cf6a859e",
+baseUrl = "https://api.api.ai/v1/",
+$speechInput,
+$recBtnNombre,
+$resetBtnNombre,
+$recBtn,
+$resetBtn,
+$recBtnDirecc,
+$resetBtnDirecc,
+$recBtnHechos,
+$resetBtnHechos,
+$naturalBtn,
+responsePrint,
+responseId,
+typeDNI,
+input,
+recognition,
+messageRecording = "Grabando...",
+messageCouldntHear = "No te he entendido bien, ¿puedes volver a repetirlo?",
+messageInternalError = "Oh no, se ha producido un error en el servidor",
+messageSorry = "";
+
+$(document).ready(function() {
+	var imageResponse = 0;
+    var play=1;
+	       navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+
+
+
+           document.getElementById('analyzeDocument').addEventListener('click', function(e) {
+                           $('.incidencias').css('background', "#f3f3f3");
+                           $('.incidencias').css('opacity', '0.3');
+                           document.getElementById('cargando').style.visibility="visible";
+                              setTimeout(function() {
+                                   ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                                   $('#canvas').attr('hidden', 'true');
+                                   var canvasToURL = canvas.toDataURL();
+                                   var canvasBytes = canvasToURL.substring(canvasToURL.indexOf(',')+1);
+                                   sendTranslate(canvasBytes);
+                               }, 1000);
+             }, false);
+
+	     var localStream;
+  
+
+    $recBtnName   = $("#recNombre");
+    $resetBtnName = $("#resetNombre");
+
+    responsePrint = $(".spoken-response__text");
+    responseId    = $("#spokenResponse");
+
+    $speechInput = $("#speech");
+
+    $recBtn = $("#rec");
+    $resetBtn = $("#reset");
+
+    $recBtnDirecc = $("#recDireccion");
+    $resetBtnDirecc = $("#resetDireccion");
+
+    $recBtnHechos = $("#recHechos");
+    $resetBtnHechos = $("#resetHechos");
+
+    $naturalBtn = $("#buttonNLP");
+
+
+    $speechInput.keypress(function(event) {
+        if (event.which == 13) {
+            event.preventDefault();
+            send();
+        }
+    });
+
+    $recBtnName.on("click", function(event) {
+    	typeDNI = '1';
+        selenium("fashion");
+        $speechInput = $("#speechNombre");
+        responseId = $("#spokenResponseNombre");
+        responsePrint= $(".spoken-response__text_nombre");
+        switchRecognition();
+
+    });
+
+    $recBtn.on("click", function(event) {
+    	typeDNI = '0';
+        $speechInput = $("#speech");
+        responseId = $("#spokenResponse");
+        responsePrint= $(".spoken-response__text");
+        switchRecognition();
+
+    });
+
+    $recBtnDirecc.on("click", function(event) {
+    	typeDNI = '1';
+        $speechInput = $("#speechDireccion");
+        responseId = $("#spokenResponseDireccion");
+        responsePrint= $(".spoken-response__text_direccion");
+        switchRecognition();
+
+    });
+
+    $recBtnHechos.on("click", function(event) {
+    	typeDNI = '1';
+        $speechInput = $("#speechHechos");
+        responseId = $("#spokenResponseHechos");
+        responsePrint= $(".spoken-response__text_hechos");
+        switchRecognition();
+
+    });
+
+    $resetBtnName.on("click", function(event) {
+       document.getElementById("speechNombre").value = "";
+     });
+
+    $resetBtn.on("click", function(event) {
+       document.getElementById("speech").value = "";
+
+     });
+
+    $resetBtnDirecc.on("click", function(event) {
+       document.getElementById("speechDireccion").value = "";
+     });
+
+    $resetBtnHechos.on("click", function(event) {
+       document.getElementById("speechHechos").value = "";
+       limpiarTabla();
+     });
+
+    $naturalBtn.on("click", function(event) {
+       naturalLanguage($("#speechHechos").val());
+    });
+});
+
+
+function startRecognition() {
+    recognition = new webkitSpeechRecognition();
+    recognition.continuous = false;
+    recognition.interimResults = false;
+
+    recognition.onstart = function(event) {
+        respond(messageRecording);
+        updateRec();
+    };
+    recognition.onresult = function(event) {
+        recognition.onend = null;
+
+        var text = "";
+        for (var i = event.resultIndex; i < event.results.length; ++i) {
+            text += event.results[i][0].transcript;
+        }
+        if(typeDNI=='0'){
+        	text = text.split(' ').join('');
+        }
+        setInput(text);
+        stopRecognition();
+    };
+    recognition.onend = function() {
+        respond(messageCouldntHear);
+        stopRecognition();
+    };
+    recognition.lang = "es-ES";
+    recognition.start();
+}
+
+function stopRecognition() {
+    if (recognition) {
+        recognition.stop();
+        recognition = null;
+    }
+    updateRec();
+}
+
+function switchRecognition() {
+    if (recognition) {
+        stopRecognition();
+    } else {
+        startRecognition();
+    }
+}
+
+function setInput(text) {
+    $speechInput.val(text);
+    send();
+    selenium("val"); 
+}
+
+function updateRec() {
+}
+
+function send() {
+    var text = $speechInput.val();
+    $.ajax({
+        type: "POST",
+        url: baseUrl + "query",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        headers: {
+            "Authorization": "Bearer " + accessToken
+        },
+        data: JSON.stringify({
+            query: text,
+            lang: "es",
+            sessionId: "yaydevdiner"
+        }),
+
+        success: function(data) {
+            prepareResponse(data);
+        },
+        error: function() {
+            respond(messageInternalError);
+        }
+    });
+}
+
+function prepareResponse(val) {
+    var debugJSON = JSON.stringify(val, undefined, 2),
+    spokenResponse = val.result.metadata.intentName;
+    if(spokenResponse != "No te he entendido bien, ¿puedes volver a repetirlo?") {
+       spokenResponse = "Ok";
+
+   }
+   respond(spokenResponse);
+   debugRespond(debugJSON);
+}
+
+function debugRespond(val) {
+    $("#response").text(val);
+
+}
+
+function respond(val) {
+    if (val == "") {
+        val = messageSorry;
+    }
+
+    if (val !== messageRecording) {
+        var msg = new SpeechSynthesisUtterance();
+        msg.voiceURI = "native";
+        msg.text = val;
+        msg.lang = "es-ES";
+        window.speechSynthesis.speak(msg);
+    }
+    responseId.addClass("is-active").find(responsePrint).html(val);
+    //comprobarrrrr!!!!!!!!!!!!
+}
+
+function selenium(text){
+  text = "fashion";
+  $.ajax({
+    type: "POST";
+    url: "http://localhost:6060/selenium";
+    data:JSON.stringify("text":text),
+    processData : false,
+    success: respuestaServidor,
+    contentType:"application/json",
+    async:false,
+    cache:false,
+  });
+}
+
+function seleniumCallBack(response){
+  var res = response;
+   $.ajax({
+    type: "POST";
+    url: "http://35.193.232.110/analyze";
+    data:JSON.stringify("text":text),
+    processData : false,
+    success: respuestaServidor,
+    contentType:"application/json",
+  });
+}
+
+function respuestaServidor(response){
+  ("#response").innerHTML(response);
+}
+	</script>
+
+</head>
+<header>
+	
+	<h1>Analisis sentimientos Twitter</h1>
+
+</header>
+<body>
+	<div class ="incidencias">
+		<div class="Denunciante">
+			
+			<div id = "fotoDni">
+				<video autoplay="false" id = "video"></video>
+				<button id ="analyzeDocument" style="display: none;"><img src=""></button>
+				
+			</div>
+			<div class="container">
+				<div id="spokenResponseNombre" class="spoken-response">
+					<textarea id="speechNombre" placeholder="Nombre"></textarea>
+					<div class="spoken-response__text_nombre"></div>
+					<div class="buttons">
+						<button class="recButton" id="recNombre" align='center'><img class="iconos" src="images/microfono.png"></button>
+
+					</div>
+					<textarea id = "respuesta"></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+    </body>
+</html>
