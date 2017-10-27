@@ -27,4 +27,3 @@ sklearn==0.0
 urllib3==1.21.1
 Werkzeug==0.12.2
 selenium==3.6.0
-phantomjs==2.1.1
