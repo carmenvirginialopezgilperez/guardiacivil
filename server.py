@@ -56,7 +56,7 @@ def vehiculo_preguntar():
 	json_data_final = json.dumps(final_texto)
 	print(json_data_final)
 	return Response(json_data_final, status=200, mimetype="application/json"
-
+			
 if __name__ == "__main__":
 	app.run()
 
