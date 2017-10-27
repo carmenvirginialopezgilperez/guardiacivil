@@ -24,7 +24,6 @@ def selenium():
 	for tweet in lista_tweets:
 		tweets += tweet.text
 	print(tweets)
-	return tweets
 
 @app.route("/", methods=["GET"])
 def hola():
