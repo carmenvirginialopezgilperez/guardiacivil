@@ -11,7 +11,9 @@ cors = CORS(app)
 @app.route("/selenium/", methods=["GET"])
 @cross_origin("*")
 def selenium():
+	print("hola")
 	driver = webdriver.PhantomJS()
+	print("webdriver ok")
 	endpoint = "FashionWeek"
 	url = "https://twitter.com/"
 	url_final = url + endpoint
