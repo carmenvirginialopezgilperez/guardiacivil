@@ -11,12 +11,12 @@ import argparse
 app = Flask(__name__)
 cors = CORS(app)
 
-
 if __name__ == "__main__":
 	app.run()
 
-@app.route('/')
+@server.route("/", methods=["GET"])
 def index():
+    return render_template("index.html")
 	
 
 	
