@@ -26,3 +26,4 @@ six==1.10.0
 sklearn==0.0
 urllib3==1.21.1
 Werkzeug==0.12.2
+selenium==3.6.0
