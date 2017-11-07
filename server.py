@@ -25,7 +25,7 @@ def index():
 		response_index = crear_identificacion()
 	if text_consulta == "4":
 		response_index = crear_avistamiento()
-	else:
+	if text_consulta == "5":
 		response_index = crear_auxilio()
 		
 	return response_index
