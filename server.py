@@ -15,7 +15,7 @@ def index():
 	text_result = text_total["result"]
 	text_pa = text_result["parameters"]
 	text_consulta = text_pa["consulta"]
-	if text_consulta == '1':
+	if text_consulta == "1":
 		response_index = persona_preguntar()
 	if text_consulta == "2":
 		response_index = vehiculo_preguntar()
@@ -25,6 +25,8 @@ def index():
 		response_index = crear_avistamiento()
 	if text_consulta == "5":
 		response_index = crear_auxilio()
+	if text_consulta == "6":
+		print("Saludo hecho")
 		
 	return response_index
 
