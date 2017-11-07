@@ -45,6 +45,7 @@ def vehiculo_preguntar():
 	my_json = respuesta.decode('utf8').replace("'", '"')
 	datajson = json.loads(my_json)
 	respuesta_pro = datajson["properties"]
+	final = ""
 	respuesta_modelo = respuesta_pro[0]["modelo"]
 	respuesta_marca1 = respuesta_pro[0]["marca"]
 	respuesta_marca = respuesta_marca1["descripcionLarga"]
@@ -60,6 +61,17 @@ def vehiculo_preguntar():
 	respuesta_color21 = respuesta_pro[1]["colorPrimario"]
 	respuesta_color2 = respuesta_color21["descripcionLarga"]
 	respuesta_matricula2 = respuesta_pro[1]["matricula"]
+	#
+	for i in respuesta_pro:
+		respuesta=[]
+		respuesta.append(i["modelo"])
+		respuesta.append(i["marca"])
+		respuesta.append(i["marca"]["descripcionLarga"])
+		respuesta.append(i["numeroBastidor"])
+		respuesta.append(i["colorPrimario"])
+		respuesta.append(i["colorPrimario"]["descripcionLarga"])
+		respuesta.append(i["matricula"])
+		final += "El vehículo con matricula "+respuesta[6]+" es de la marca "+respuesta[2]+" su modelo es "+respuesta[0]+" de color "+respuesta[5]+" y con número de bastidor "+respuesta[3]+"."
 	#
 	final = "El vehículo con matricula "+respuesta_matricula+" es de la marca "+respuesta_marca+" su modelo es "+respuesta_modelo+" de color "+respuesta_color+" y con número de bastidor "+respuesta_bastidor+"."
 	final2 = "El vehículo con matricula "+respuesta_matricula2+" es de la marca "+respuesta_marca2+" su modelo es "+respuesta_modelo2+" de color "+respuesta_color2+" y con número de bastidor "+respuesta_bastidor2+"."
