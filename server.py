@@ -17,6 +17,7 @@ def index():
 	text_consulta = text_pa["consulta"]
 	print("text: "+text_consulta)
 	if text_consulta == '1':
+		print("consultando persona")
 		response_index = persona_preguntar()
 	if text_consulta == "2":
 		response_index = vehiculo_preguntar()
