@@ -61,8 +61,8 @@ def vehiculo_preguntar():
 	respuesta_color2 = respuesta_color21["descripcionLarga"]
 	respuesta_matricula2 = respuesta_pro[1]["matricula"]
 	#
-	final = "El vehículo con matricula "+respuesta_matricula+"es de la marca "+respuesta_marca+" su modelo es "+respuesta_modelo+" de color "+respuesta_color+" y con número de bastidor "+respuesta_bastidor+"."
-	final2 = "El vehículo con matricula "+respuesta_matricula2+"es de la marca "+respuesta_marca2+" su modelo es "+respuesta_modelo2+" de color "+respuesta_color2+" y con número de bastidor "+respuesta_bastidor2+"."
+	final = "El vehículo con matricula "+respuesta_matricula+" es de la marca "+respuesta_marca+" su modelo es "+respuesta_modelo+" de color "+respuesta_color+" y con número de bastidor "+respuesta_bastidor+"."
+	final2 = "El vehículo con matricula "+respuesta_matricula2+" es de la marca "+respuesta_marca2+" su modelo es "+respuesta_modelo2+" de color "+respuesta_color2+" y con número de bastidor "+respuesta_bastidor2+"."
 	final = final + '\n' + final2
 	final_texto={"speech":final,"displayText":final,"data":{},"contextOut":[],"source":"webhook"}
 	json_data_final = json.dumps(final_texto)
