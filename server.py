@@ -47,10 +47,10 @@ def vehiculo_preguntar():
 	respuesta_pro = datajson["properties"]
 	respuesta_modelo = respuesta_pro[0]["modelo"]
 	respuesta_marca1 = respuesta_pro[0]["marca"]
-	respuesta_marca = respuesta_marca1[0]["descripcionLarga"]
+	respuesta_marca = respuesta_marca1["descripcionLarga"]
 	respuesta_bastidor = respuesta_pro[0]["numeroBastidor"]
 	respuesta_color1 = respuesta_pro[0]["colorPrimario"]
-	respuesta_color = respuesta_color1[0]["descripcionLarga"]
+	respuesta_color = respuesta_color1["descripcionLarga"]
 	respuesta_matricula = respuesta_pro[0]["matricula"]
 	final = "El vehículo con matricula "+respuesta_matricula+"es de la marca "+respuesta_marca+" su modelo es "+respuesta_modelo+" de color "+respuesta_color+" y con número de bastidor "+respuesta_bastidor+"."
 	final_texto={"speech":final,"displayText":final,"data":{},"contextOut":[],"source":"webhook"}
