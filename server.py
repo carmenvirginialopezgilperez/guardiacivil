@@ -45,7 +45,7 @@ def vehiculo_preguntar():
 	my_json = respuesta.decode('utf8').replace("'", '"')
 	datajson = json.loads(my_json)
 	respuesta_pro = datajson["properties"]
-	print(respuesta_pro)
+	print(respuesta_pro["modelo"])
 	respuesta_modelo = respuesta_pro["modelo"]
 	respuesta_marca1 = respuesta_pro["marca"]
 	respuesta_marca = respuesta_marca1["descripcionLarga"]
