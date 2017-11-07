@@ -49,29 +49,11 @@ def vehiculo_preguntar():
 	datajson = json.loads(my_json)
 	respuesta_pro = datajson["properties"]
 	final = ""
-	"""
-	respuesta_modelo = respuesta_pro[0]["modelo"]
-	respuesta_marca1 = respuesta_pro[0]["marca"]
-	respuesta_marca = respuesta_marca1["descripcionLarga"]
-	respuesta_bastidor = respuesta_pro[0]["numeroBastidor"]
-	respuesta_color1 = respuesta_pro[0]["colorPrimario"]
-	respuesta_color = respuesta_color1["descripcionLarga"]
-	respuesta_matricula = respuesta_pro[0]["matricula"]
-	
-	respuesta_modelo2 = respuesta_pro[1]["modelo"]
-	respuesta_marca21 = respuesta_pro[1]["marca"]
-	respuesta_marca2 = respuesta_marca21["descripcionLarga"]
-	respuesta_bastidor2 = respuesta_pro[1]["numeroBastidor"]
-	respuesta_color21 = respuesta_pro[1]["colorPrimario"]
-	respuesta_color2 = respuesta_color21["descripcionLarga"]
-	respuesta_matricula2 = respuesta_pro[1]["matricula"]
-	
-	final = "El vehículo con matricula "+respuesta_matricula+" es de la marca "+respuesta_marca+" su modelo es "+respuesta_modelo+" de color "+respuesta_color+" y con número de bastidor "+respuesta_bastidor+"."
-	final2 = "El vehículo con matricula "+respuesta_matricula2+" es de la marca "+respuesta_marca2+" su modelo es "+respuesta_modelo2+" de color "+respuesta_color2+" y con número de bastidor "+respuesta_bastidor2+"."
-	final = final + '\n' + final2
-	"""
 	for i in respuesta_pro:
-		final += "El vehículo con matricula "+i["matricula"]+" es de la marca "+i["marca"]["descripcionLarga"]+" su modelo es "+i["modelo"]+" de color "+i["colorPrimario"]["descripcionLarga"]+" y con número de bastidor "+i["numeroBastidor"]+"."+'\n'
+		final += "Matricula "+i["matricula"]+" Marca "+i["marca"]["descripcionLarga"]+
+		" Modelo "+i["modelo"]+" Color "+i["colorPrimario"]["descripcionLarga"]+ 
+		" Tipo "+i["tipo"]["title"]
+		" Bastidor "+i["numeroBastidor"]
 	
 	final_texto={"speech":final,"displayText":final,"data":{},"contextOut":[],"source":"webhook"}
 	json_data_final = json.dumps(final_texto)
@@ -95,10 +77,20 @@ def persona_preguntar():
 	my_json = respuesta.decode('utf8').replace("'", '"')
 	datajson = json.loads(my_json)
 	respuesta_pro = datajson["properties"]
+	#Nombre
+	respuesta_nombre = respuesta_pro["nombre"]["title"]
+	#Primer Apellido
+	respuesta_primerApellido = respuesta_pro["primerApellido"]["title"]
+	#Segundo Apellido
+	respuesta_segundoApellido = respuesta_pro["segundoApellido"]["title"]
+	#Fecha Nacimiento
+	respuesta_fechaNacimiento = respuesta_pro["fechaNacimiento"]["properties"]["fecha"]["title"]
+	#URL DNI
 	respuesta_re = respuesta_pro["resenas"]
 	respuesta_item = respuesta_re["items"]
 	respuesta_img = respuesta_item["ref"]
-	final = "La url de la imagen con dni "+text_un+" es " +respuesta_img
+	final = "Nombre "+respuesta_nombre+" Primer "+respuesta_primerApellido+" Segundo "+respuesta_segundoApellido+
+	" Fecha "+repuesta_fechaNacimiento+" URL "+respuesta_fechaNacimiento
 	final_texto={"speech":final,"displayText":final,"data":{},"contextOut":[],"source":"webhook"}
 	json_data_final = json.dumps(final_texto)
 	return Response(json_data_final, status=200, mimetype="application/json")
@@ -120,7 +112,7 @@ def crear_auxilio():
 	my_json = respuesta.decode('utf8').replace("'", '"')
 	datajson = json.loads(my_json)
 	respuesta_pro = datajson["respuesta"]
-	final = "Registrado auxilio"
+	final = "200"
 	final_texto={"speech":final,"displayText":final,"data":{},"contextOut":[],"source":"webhook"}
 	json_data_final = json.dumps(final_texto)
 	return Response(json_data_final, status=200, mimetype="application/json")
@@ -142,7 +134,7 @@ def crear_identificacion():
 	my_json = respuesta.decode('utf8').replace("'", '"')
 	datajson = json.loads(my_json)
 	respuesta_pro = datajson["respuesta"]
-	final = "Registrada identificacion"
+	final = "200"
 	final_texto={"speech":final,"displayText":final,"data":{},"contextOut":[],"source":"webhook"}
 	json_data_final = json.dumps(final_texto)
 	return Response(json_data_final, status=200, mimetype="application/json")
@@ -164,7 +156,7 @@ def crear_avistamiento():
 	my_json = respuesta.decode('utf8').replace("'", '"')
 	datajson = json.loads(my_json)
 	respuesta_pro = datajson["respuesta"]
-	final = "Registrado avistamiento"
+	final = "200"
 	final_texto={"speech":final,"displayText":final,"data":{},"contextOut":[],"source":"webhook"}
 	json_data_final = json.dumps(final_texto)
 	return Response(json_data_final, status=200, mimetype="application/json")
