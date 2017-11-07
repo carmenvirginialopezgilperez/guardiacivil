@@ -76,11 +76,11 @@ def persona_preguntar():
 	print(datajson)
 	respuesta_pro = datajson["properties"]
 	#Nombre
-	respuesta_nombre = respuesta_pro["nombre"]["title"]
+	respuesta_nombre = respuesta_pro["nombreCompleto"]["properties"]["nombre"]["title"]
 	#Primer Apellido
-	respuesta_primerApellido = respuesta_pro["primerApellido"]["title"]
+	respuesta_primerApellido = respuesta_pro["nombreCompleto"]["properties"]["primerApellido"]["title"]
 	#Segundo Apellido
-	respuesta_segundoApellido = respuesta_pro["segundoApellido"]["title"]
+	respuesta_segundoApellido = respuesta_pro["nombreCompleto"]["properties"]["segundoApellido"]["title"]
 	#Fecha Nacimiento
 	respuesta_fechaNacimiento = respuesta_pro["fechaNacimiento"]["properties"]["fecha"]["title"]
 	#URL DNI
