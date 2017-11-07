@@ -45,14 +45,13 @@ def vehiculo_preguntar():
 	my_json = respuesta.decode('utf8').replace("'", '"')
 	datajson = json.loads(my_json)
 	respuesta_pro = datajson["properties"]
-	print(respuesta_pro[1]["modelo"])
-	respuesta_modelo = respuesta_pro["modelo"]
-	respuesta_marca1 = respuesta_pro["marca"]
-	respuesta_marca = respuesta_marca1["descripcionLarga"]
-	respuesta_bastidor = respuesta_pro["numeroBastidor"]
-	respuesta_color1 = respuesta_pro["colorPrimario"]
-	respuesta_color = respuesta_color1["descripcionLarga"]
-	respuesta_matricula = respuesta_pro["matricula"]
+	respuesta_modelo = respuesta_pro[0]["modelo"]
+	respuesta_marca1 = respuesta_pro[0]["marca"]
+	respuesta_marca = respuesta_marca1[0]["descripcionLarga"]
+	respuesta_bastidor = respuesta_pro[0]["numeroBastidor"]
+	respuesta_color1 = respuesta_pro[0]["colorPrimario"]
+	respuesta_color = respuesta_color1[0]["descripcionLarga"]
+	respuesta_matricula = respuesta_pro[0]["matricula"]
 	final = "El vehículo con matricula "+respuesta_matricula+"es de la marca "+respuesta_marca+" su modelo es "+respuesta_modelo+" de color "+respuesta_color+" y con número de bastidor "+respuesta_bastidor+"."
 	final_texto={"speech":final,"displayText":final,"data":{},"contextOut":[],"source":"webhook"}
 	json_data_final = json.dumps(final_texto)
