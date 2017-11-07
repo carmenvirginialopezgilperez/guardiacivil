@@ -10,14 +10,30 @@ cors = CORS(app)
 
 @app.route('/')
 def index():
-	return 'Yo, its working!'
-
-#http://127.0.0.1:5000/vehiculo/?matricula=12
-@app.route('/vehiculos', methods=["POST"])
-def vehiculo_preguntar():
+	response_index = ""
 	text_total = request.json
 	text_result = text_total["result"]
 	text_pa = text_result["parameters"]
+	text_consulta = text_pa["consulta"]
+	print(text_consulta)
+	if text_consulta == 1:
+		response_index = persona_preguntar()
+	if text_consulta == 2:
+		response_index = vehiculo_preguntar()
+	if text_consulta == 3:
+		response_index = crear_identificacion()
+	if text_consulta == 4:
+		response_index = crear_avistamiento()
+	else:
+		response_index = crear_auxilio()
+		
+	return response_index
+
+@app.route('/vehiculos', methods=["POST"])
+def vehiculo_preguntar():
+	#text_total = request.json
+	#text_result = text_total["result"]
+	#text_pa = text_result["parameters"]
 	text_un = text_pa["matricula"]
 	data = {}
 	data['matricula'] = text_un
