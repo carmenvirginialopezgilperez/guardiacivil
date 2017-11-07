@@ -16,13 +16,13 @@ def index():
 	text_pa = text_result["parameters"]
 	text_consulta = text_pa["consulta"]
 	print("text: "+text_consulta)
-	if text_consulta == 1:
+	if text_consulta == "1":
 		response_index = persona_preguntar()
-	if text_consulta == 2:
+	if text_consulta == "2":
 		response_index = vehiculo_preguntar()
-	if text_consulta == 3:
+	if text_consulta == "3":
 		response_index = crear_identificacion()
-	if text_consulta == 4:
+	if text_consulta == "4":
 		response_index = crear_avistamiento()
 	else:
 		response_index = crear_auxilio()
