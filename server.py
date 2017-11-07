@@ -8,7 +8,7 @@ from flask_cors import cross_origin, CORS
 app = Flask(__name__)
 cors = CORS(app)
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
 	response_index = ""
 	text_total = request.json
