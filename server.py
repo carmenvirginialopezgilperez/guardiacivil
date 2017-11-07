@@ -15,9 +15,7 @@ def index():
 	text_result = text_total["result"]
 	text_pa = text_result["parameters"]
 	text_consulta = text_pa["consulta"]
-	print("text: "+text_consulta)
 	if text_consulta == '1':
-		print("consultando persona")
 		response_index = persona_preguntar()
 	if text_consulta == "2":
 		response_index = vehiculo_preguntar()
@@ -47,6 +45,7 @@ def vehiculo_preguntar():
 	my_json = respuesta.decode('utf8').replace("'", '"')
 	datajson = json.loads(my_json)
 	respuesta_pro = datajson["properties"]
+	print(respuesta_pro)
 	respuesta_modelo = respuesta_pro["modelo"]
 	respuesta_marca1 = respuesta_pro["marca"]
 	respuesta_marca = respuesta_marca1["descripcionLarga"]
