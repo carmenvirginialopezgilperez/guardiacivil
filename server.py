@@ -73,6 +73,7 @@ def persona_preguntar():
 	s.keep_alive = False
 	my_json = respuesta.decode('utf8').replace("'", '"')
 	datajson = json.loads(my_json)
+	print(datajson)
 	respuesta_pro = datajson["properties"]
 	#Nombre
 	respuesta_nombre = respuesta_pro["nombre"]["title"]
