@@ -13,6 +13,7 @@ def index():
 	response_index = ""
 	text_total = request.json
 	text_result = text_total["result"]
+	print(text_result)
 	text_pa = text_result["parameters"]
 	text_consulta = text_pa["consulta"]
 	print(text_consulta)
