@@ -55,8 +55,6 @@ def index():
 			if matOrDni == "matricula":
 				response_index = vehiculo_preguntar2(info)
 		
-		response_index = text_query
-		
 	return response_index
 
 @app.route('/vehiculos', methods=["POST"])
