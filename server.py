@@ -47,7 +47,7 @@ def index():
 				response_index = crear_identificacion()
 			if  tipoAlta == "auxilio":
 				response_index = crear_auxilio()
-		if text_petición == "Consulta":
+		if text_peticion == "Consulta":
 			if matOrDni == "dni":
 				response_index = persona_preguntar()
 			if matOrDni == "matricula":
