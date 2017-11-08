@@ -28,6 +28,7 @@ def index():
 	if text_consulta == "6":
 		info = ""
 		matOrDni = ""
+		tipoAlta = ""
 		text_query = text_result["resolvedQuery"]
 		text_peticion = text_pa["peticion"]
 		for i in text_query:
@@ -35,12 +36,22 @@ def index():
 			if i == " ":
 				if info == "matricula" or "dni":
 					matOrDni = info
+				if info == "avistamiento" or "identificacion" or "auxilio":
+					tipoAlta = info
 				info = ""
-		print("info: "+info)
-		print ("matordni: "+matOrDni)
-		#if text_peticion == "Alta":
-			
-		#if text_petición == "Consulta":
+		print(text_petición+" "+tipoAlta+" "+matOrDni+" "+info)
+		if text_peticion == "Alta":
+			if  tipoAlta == "avistamiento":
+				response_index = crear_avistamiento()
+			if  tipoAlta == "identificacion":
+				response_index = crear_identificacion()
+			if  tipoAlta == "auxilio":
+				response_index = crear_auxilio()
+		if text_petición == "Consulta":
+			if matOrDni == "dni":
+				response_index = persona_preguntar()
+			if matOrDni == "matricula":
+				response_index = vehiculo_preguntar()
 			
 		response_index = text_query
 		
