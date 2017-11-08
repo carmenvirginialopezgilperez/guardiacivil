@@ -36,7 +36,7 @@ def index():
 			if i == " ":
 				if info == "matricula" or "dni":
 					matOrDni = info
-				if info == "avistamiento" or "identificacion" or "auxilio":
+				else if info == "avistamiento" or info == "identificacion" or info == "auxilio":
 					tipoAlta = info
 				info = ""
 		print(text_peticion+", "+tipoAlta+", "+matOrDni+", "+info)
