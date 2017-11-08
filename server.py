@@ -57,8 +57,13 @@ def index():
 				response_index = persona_preguntar2(info)
 			if matOrDni == "matricula" or matOrDni == "Matricula" or matOrDni == "Matrícula" or matOrDni == "matrícula":
 				response_index = vehiculo_preguntar2(info)
-		
-	return response_index
+	if matOrDni != "":
+		return response_index
+	else:
+		final = "0"
+		final_texto={"speech":final,"displayText":final,"data":{},"contextOut":[],"source":"webhook"}
+		json_data_final = json.dumps(final_texto)
+		return Response(json_data_final, status=200, mimetype="application/json")
 
 @app.route('/vehiculos', methods=["POST"])
 def vehiculo_preguntar():
