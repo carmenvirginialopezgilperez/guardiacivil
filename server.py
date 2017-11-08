@@ -32,13 +32,14 @@ def index():
 		text_query = text_result["resolvedQuery"]
 		text_peticion = text_pa["peticion"]
 		for i in text_query:
-			info += i
 			if i == " ":
 				if info == "matricula" or info == "dni":
 					matOrDni = info
 				elif info == "avistamiento" or info == "identificacion" or info == "auxilio":
 					tipoAlta = info
 				info = ""
+			else:
+				info += i
 		print(text_peticion+", "+tipoAlta+", "+matOrDni+", "+info)
 		if text_peticion == "Alta":
 			if  tipoAlta == "avistamiento":
