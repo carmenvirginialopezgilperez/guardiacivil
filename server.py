@@ -44,16 +44,16 @@ def index():
 		
 		if text_peticion == "Alta":
 			if  tipoAlta == "avistamiento":
-				response_index = crear_avistamiento()
+				response_index = crear_avistamiento2(info)
 			if  tipoAlta == "identificacion":
-				response_index = crear_identificacion()
+				response_index = crear_identificacion2(info)
 			if  tipoAlta == "auxilio":
 				response_index = crear_auxilio2(info)
 		if text_peticion == "Consulta":
 			if matOrDni == "dni":
-				response_index = persona_preguntar()
+				response_index = persona_preguntar2(info)
 			if matOrDni == "matricula":
-				response_index = vehiculo_preguntar()
+				response_index = vehiculo_preguntar2(info)
 		
 		response_index = text_query
 		
@@ -144,28 +144,6 @@ def crear_auxilio():
 	json_data_final = json.dumps(final_texto)
 	return Response(json_data_final, status=200, mimetype="application/json")
 
-@app.route('/auxilio', methods=["POST"])
-def crear_auxilio2(dni):
-	text_total = request.json
-	text_result = text_total["result"]
-	text_pa = text_result["parameters"]
-	text_un = dni
-	data = {}
-	data['dni'] = text_un
-	json_data = json.dumps(data)
-	url = 'http://35.184.86.19/registro/?id='
-	url_final = url + text_un
-	respuesta = requests.get(url_final).content
-	s = requests.session()
-	s.keep_alive = False
-	my_json = respuesta.decode('utf8').replace("'", '"')
-	datajson = json.loads(my_json)
-	respuesta_pro = datajson["respuesta"]
-	final = "200"
-	final_texto={"speech":final,"displayText":final,"data":{},"contextOut":[],"source":"webhook"}
-	json_data_final = json.dumps(final_texto)
-	return Response(json_data_final, status=200, mimetype="application/json")
-
 @app.route('/identificacion', methods=["POST"])
 def crear_identificacion():
 	text_total = request.json
@@ -209,6 +187,137 @@ def crear_avistamiento():
 	final_texto={"speech":final,"displayText":final,"data":{},"contextOut":[],"source":"webhook"}
 	json_data_final = json.dumps(final_texto)
 	return Response(json_data_final, status=200, mimetype="application/json")
+
+###################
+@app.route('/vehiculos', methods=["POST"])
+def vehiculo_preguntar2(matricula):
+	text_total = request.json
+	text_result = text_total["result"]
+	text_pa = text_result["parameters"]
+	text_un = matricula
+	data = {}
+	data['matricula'] = text_un
+	json_data = json.dumps(data)
+	url = 'http://35.184.86.19/vehiculos/?matricula='
+	url_final = url + text_un
+	respuesta = requests.get(url_final).content
+	s = requests.session()
+	s.keep_alive = False
+	my_json = respuesta.decode('utf8').replace("'", '"')
+	datajson = json.loads(my_json)
+	respuesta_pro = datajson["properties"]
+	final = ""
+	for i in respuesta_pro:
+		final += i["matricula"]+"$"+i["marca"]["descripcionLarga"]+"$"+i["modelo"]+"$"+i["colorPrimario"]["descripcionLarga"]+ "$"+i["tipo"]["title"]+"$"+i["numeroBastidor"]
+		final += "*"
+	final = final[:-1]
+	print(final)
+	final_texto={"speech":final,"displayText":final,"data":{},"contextOut":[],"source":"webhook"}
+	json_data_final = json.dumps(final_texto)
+	return Response(json_data_final, status=200, mimetype="application/json")
+
+
+@app.route('/alias', methods=["POST"])
+def persona_preguntar2(dni):
+	text_total = request.json
+	text_result = text_total["result"]
+	text_pa = text_result["parameters"]
+	text_un = dni
+	data = {}
+	data['dni'] = text_un
+	json_data = json.dumps(data)
+	url = 'http://35.184.86.19/alias/?dni='
+	url_final = url + text_un
+	respuesta = requests.get(url_final).content
+	s = requests.session()
+	s.keep_alive = False
+	my_json = respuesta.decode('utf8').replace("'", '"')
+	datajson = json.loads(my_json)
+	print(datajson)
+	respuesta_pro = datajson["properties"]
+	#Nombre
+	respuesta_nombre = respuesta_pro["nombreCompleto"]["properties"]["nombre"]["title"]
+	#Primer Apellido
+	respuesta_primerApellido = respuesta_pro["nombreCompleto"]["properties"]["primerApellido"]["title"]
+	#Segundo Apellido
+	respuesta_segundoApellido = respuesta_pro["nombreCompleto"]["properties"]["segundoApellido"]["title"]
+	#Fecha Nacimiento
+	respuesta_fechaNacimiento = respuesta_pro["fechaNacimiento"]["properties"]["fecha"]["title"]
+	#URL DNI
+	respuesta_re = respuesta_pro["resenas"]
+	respuesta_item = respuesta_re["items"]
+	respuesta_img = respuesta_item["ref"]
+	final = respuesta_nombre+"$"+respuesta_primerApellido+"$"+respuesta_segundoApellido+"$"+respuesta_fechaNacimiento+"$"+respuesta_img
+	final_texto={"speech":final,"displayText":final,"data":{},"contextOut":[],"source":"webhook"}
+	json_data_final = json.dumps(final_texto)
+	return Response(json_data_final, status=200, mimetype="application/json")
+
+@app.route('/auxilio', methods=["POST"])
+def crear_auxilio2(dni):
+	text_total = request.json
+	text_result = text_total["result"]
+	text_pa = text_result["parameters"]
+	text_un = dni
+	data = {}
+	data['dni'] = text_un
+	json_data = json.dumps(data)
+	url = 'http://35.184.86.19/registro/?id='
+	url_final = url + text_un
+	respuesta = requests.get(url_final).content
+	s = requests.session()
+	s.keep_alive = False
+	my_json = respuesta.decode('utf8').replace("'", '"')
+	datajson = json.loads(my_json)
+	respuesta_pro = datajson["respuesta"]
+	final = "200"
+	final_texto={"speech":final,"displayText":final,"data":{},"contextOut":[],"source":"webhook"}
+	json_data_final = json.dumps(final_texto)
+	return Response(json_data_final, status=200, mimetype="application/json")
+
+@app.route('/identificacion', methods=["POST"])
+def crear_identificacion2(dni):
+	text_total = request.json
+	text_result = text_total["result"]
+	text_pa = text_result["parameters"]
+	text_un = dni
+	data = {}
+	data['dni'] = text_un
+	json_data = json.dumps(data)
+	url = 'http://35.184.86.19/registro/?id='
+	url_final = url + text_un
+	respuesta = requests.get(url_final).content
+	s = requests.session()
+	s.keep_alive = False
+	my_json = respuesta.decode('utf8').replace("'", '"')
+	datajson = json.loads(my_json)
+	respuesta_pro = datajson["respuesta"]
+	final = "200"
+	final_texto={"speech":final,"displayText":final,"data":{},"contextOut":[],"source":"webhook"}
+	json_data_final = json.dumps(final_texto)
+	return Response(json_data_final, status=200, mimetype="application/json")
+
+@app.route('/avistamiento', methods=["POST"])
+def crear_avistamiento2(matricula):
+	text_total = request.json
+	text_result = text_total["result"]
+	text_pa = text_result["parameters"]
+	text_un = matricula
+	data = {}
+	data['dni'] = text_un
+	json_data = json.dumps(data)
+	url = 'http://35.184.86.19/registro/?id='
+	url_final = url + text_un
+	respuesta = requests.get(url_final).content
+	s = requests.session()
+	s.keep_alive = False
+	my_json = respuesta.decode('utf8').replace("'", '"')
+	datajson = json.loads(my_json)
+	respuesta_pro = datajson["respuesta"]
+	final = "200"
+	final_texto={"speech":final,"displayText":final,"data":{},"contextOut":[],"source":"webhook"}
+	json_data_final = json.dumps(final_texto)
+	return Response(json_data_final, status=200, mimetype="application/json")
+###################
 
 
 if __name__ == "__main__":
