@@ -36,8 +36,8 @@ def index():
 				if info == "matricula" or "dni":
 					matOrDni = info
 				info = ""
-		print(info)
-		print (matOrDni)
+		print("info: "+info)
+		print ("matordni: "+matOrDni)
 		if text_peticion == "Alta":
 			
 		if text_petición == "Consulta":
