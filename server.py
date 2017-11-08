@@ -38,9 +38,9 @@ def index():
 				info = ""
 		print("info: "+info)
 		print ("matordni: "+matOrDni)
-		if text_peticion == "Alta":
+		#if text_peticion == "Alta":
 			
-		if text_petición == "Consulta":
+		#if text_petición == "Consulta":
 			
 		response_index = text_query
 		
