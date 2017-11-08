@@ -33,7 +33,7 @@ def index():
 		text_peticion = text_pa["peticion"]
 		for i in text_query:
 			if i == " ":
-				if info == "matricula" or info == "dni":
+				if info == "matricula" or info == "dni" or info == "DNI" or info == "Dni" or info == "Matricula" or info == "Matrícula" or info == "matrícula":
 					matOrDni = info
 				elif info == "avistamiento" or info == "identificacion" or info == "auxilio":
 					tipoAlta = info
