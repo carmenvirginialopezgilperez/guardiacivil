@@ -34,7 +34,7 @@ def index():
 		for i in text_query:
 			info += i
 			if i == " ":
-				if info == "matricula" or "dni":
+				if info == "matricula" or info == "dni":
 					matOrDni = info
 				else if info == "avistamiento" or info == "identificacion" or info == "auxilio":
 					tipoAlta = info
