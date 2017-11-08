@@ -29,30 +29,33 @@ def index():
 		info = ""
 		matOrDni = ""
 		tipoAlta = ""
+		cont = 0
 		text_query = text_result["resolvedQuery"]
 		text_peticion = text_pa["peticion"]
 		for i in text_query:
 			if i == " ":
-				if info == "matricula" or info == "dni" or info == "DNI" or info == "Dni" or info == "Matricula" or info == "Matrícula" or info == "matrícula":
+				if (cont > 0) and (text_query[cont-1] == 0 or text_query[cont-1] == 1 or text_query[cont-1] == 2 or text_query[cont-1] == 3 or text_query[cont-1] == 4 or text_query[cont-1] == 5 or text_query[cont-1] == 6 or text_query[cont-1] == 7 or text_query[cont-1] == 8 or text_query[cont-1] == 9):
+				elif info == "matricula" or info == "dni" or info == "DNI" or info == "Dni" or info == "Matricula" or info == "Matrícula" or info == "matrícula":
 					matOrDni = info
-				elif info == "avistamiento" or info == "identificacion" or info == "auxilio":
+				elif info == "avistamiento" or info == "identificacion" or info == "identificación" or info == "auxilio":
 					tipoAlta = info
 				info = ""
 			else:
 				info += i
+			cont += 1
 		print(text_peticion+", "+tipoAlta+", "+matOrDni+", "+info)
 		
 		if text_peticion == "Alta":
 			if  tipoAlta == "avistamiento":
 				response_index = crear_avistamiento2(info)
-			if  tipoAlta == "identificacion":
+			if  tipoAlta == "identificacion" or tipoAlta == "identificación":
 				response_index = crear_identificacion2(info)
 			if  tipoAlta == "auxilio":
 				response_index = crear_auxilio2(info)
 		if text_peticion == "Consulta":
-			if matOrDni == "dni":
+			if matOrDni == "dni" or matOrDni == "DNI" or matOrDni == "Dni":
 				response_index = persona_preguntar2(info)
-			if matOrDni == "matricula":
+			if matOrDni == "matricula" or matOrDni == "Matricula" or matOrDni == "Matrícula" or matOrDni == "matrícula":
 				response_index = vehiculo_preguntar2(info)
 		
 	return response_index
