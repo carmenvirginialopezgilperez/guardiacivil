@@ -35,6 +35,7 @@ def index():
 		for i in text_query:
 			if i == " ":
 				if (cont > 0) and (text_query[cont-1] == 0 or text_query[cont-1] == 1 or text_query[cont-1] == 2 or text_query[cont-1] == 3 or text_query[cont-1] == 4 or text_query[cont-1] == 5 or text_query[cont-1] == 6 or text_query[cont-1] == 7 or text_query[cont-1] == 8 or text_query[cont-1] == 9):
+					cont = cont
 				elif info == "matricula" or info == "dni" or info == "DNI" or info == "Dni" or info == "Matricula" or info == "Matrícula" or info == "matrícula":
 					matOrDni = info
 				elif info == "avistamiento" or info == "identificacion" or info == "identificación" or info == "auxilio":
