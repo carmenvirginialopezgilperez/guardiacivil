@@ -12,7 +12,6 @@ cors = CORS(app)
 def index():
 	response_index = ""
 	text_total = request.json
-	print(text_total)
 	text_result = text_total["result"]
 	text_pa = text_result["parameters"]
 	text_consulta = text_pa["consulta"]
@@ -28,6 +27,7 @@ def index():
 		response_index = crear_auxilio()
 	if text_consulta == "6":
 		text_query = text_result["resolvedQuery"]
+		print(text_query)
 		response_index = text_query
 		
 	return response_index
