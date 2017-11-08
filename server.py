@@ -10,21 +10,20 @@ cors = CORS(app)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-	response_index = ""
 	text_total = request.json
 	text_result = text_total["result"]
 	text_pa = text_result["parameters"]
 	text_consulta = text_pa["consulta"]
 	if text_consulta == "1":
-		response_index = persona_preguntar()
+		return persona_preguntar()
 	if text_consulta == "2":
-		response_index = vehiculo_preguntar()
+		return vehiculo_preguntar()
 	if text_consulta == "3":
-		response_index = crear_identificacion()
+		return crear_identificacion()
 	if text_consulta == "4":
-		response_index = crear_avistamiento()
+		return crear_avistamiento()
 	if text_consulta == "5":
-		response_index = crear_auxilio()
+		return crear_auxilio()
 	if text_consulta == "6":
 		info = ""
 		matOrDni = ""
@@ -57,13 +56,14 @@ def index():
 				response_index = persona_preguntar2(info)
 			if matOrDni == "matricula" or matOrDni == "Matricula" or matOrDni == "Matrícula" or matOrDni == "matrícula":
 				response_index = vehiculo_preguntar2(info)
-	if matOrDni != "":
-		return response_index
-	else:
-		final = "0"
-		final_texto={"speech":final,"displayText":final,"data":{},"contextOut":[],"source":"webhook"}
-		json_data_final = json.dumps(final_texto)
-		return Response(json_data_final, status=200, mimetype="application/json")
+		if matOrDni != "":
+			return response_index
+		else:
+			final = "0"
+			final_texto={"speech":final,"displayText":final,"data":{},"contextOut":[],"source":"webhook"}
+			json_data_final = json.dumps(final_texto)
+			return Response(json_data_final, status=200, mimetype="application/json")
+		
 
 @app.route('/vehiculos', methods=["POST"])
 def vehiculo_preguntar():
