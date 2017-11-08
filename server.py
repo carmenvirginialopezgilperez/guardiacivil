@@ -41,20 +41,20 @@ def index():
 			else:
 				info += i
 		print(text_peticion+", "+tipoAlta+", "+matOrDni+", "+info)
-		"""
+		
 		if text_peticion == "Alta":
 			if  tipoAlta == "avistamiento":
 				response_index = crear_avistamiento()
 			if  tipoAlta == "identificacion":
 				response_index = crear_identificacion()
 			if  tipoAlta == "auxilio":
-				response_index = crear_auxilio()
+				response_index = crear_auxilio2(info)
 		if text_peticion == "Consulta":
 			if matOrDni == "dni":
 				response_index = persona_preguntar()
 			if matOrDni == "matricula":
 				response_index = vehiculo_preguntar()
-		"""
+		
 		response_index = text_query
 		
 	return response_index
@@ -128,6 +128,28 @@ def crear_auxilio():
 	text_result = text_total["result"]
 	text_pa = text_result["parameters"]
 	text_un = text_pa["dni"]
+	data = {}
+	data['dni'] = text_un
+	json_data = json.dumps(data)
+	url = 'http://35.184.86.19/registro/?id='
+	url_final = url + text_un
+	respuesta = requests.get(url_final).content
+	s = requests.session()
+	s.keep_alive = False
+	my_json = respuesta.decode('utf8').replace("'", '"')
+	datajson = json.loads(my_json)
+	respuesta_pro = datajson["respuesta"]
+	final = "200"
+	final_texto={"speech":final,"displayText":final,"data":{},"contextOut":[],"source":"webhook"}
+	json_data_final = json.dumps(final_texto)
+	return Response(json_data_final, status=200, mimetype="application/json")
+
+@app.route('/auxilio', methods=["POST"])
+def crear_auxilio2(dni):
+	text_total = request.json
+	text_result = text_total["result"]
+	text_pa = text_result["parameters"]
+	text_un = dni
 	data = {}
 	data['dni'] = text_un
 	json_data = json.dumps(data)
