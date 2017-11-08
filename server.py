@@ -59,7 +59,7 @@ def index():
 		if matOrDni != "":
 			return response_index
 		else:
-			final = ""
+			final = "0"
 			final_texto={"speech":final,"displayText":final,"data":{},"contextOut":[],"source":"webhook"}
 			json_data_final = json.dumps(final_texto)
 			return Response(json_data_final, status=200, mimetype="application/json")
