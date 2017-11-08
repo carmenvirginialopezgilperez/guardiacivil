@@ -41,6 +41,7 @@ def index():
 			else:
 				info += i
 		print(text_peticion+", "+tipoAlta+", "+matOrDni+", "+info)
+		"""
 		if text_peticion == "Alta":
 			if  tipoAlta == "avistamiento":
 				response_index = crear_avistamiento()
@@ -53,7 +54,7 @@ def index():
 				response_index = persona_preguntar()
 			if matOrDni == "matricula":
 				response_index = vehiculo_preguntar()
-			
+		"""
 		response_index = text_query
 		
 	return response_index
