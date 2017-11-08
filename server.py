@@ -27,8 +27,8 @@ def index():
 	if text_consulta == "5":
 		response_index = crear_auxilio()
 	if text_consulta == "6":
-		print("Saludo hecho")
-		#Aqui con el parametro "saludo", habría que ver si ha hecho una consulta, y coger el dni o matricula
+		text_query = text_result["resolvedQuery"]
+		response_index = text_query
 		
 	return response_index
 
