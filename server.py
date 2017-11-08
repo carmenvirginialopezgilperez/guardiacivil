@@ -39,7 +39,7 @@ def index():
 				if info == "avistamiento" or "identificacion" or "auxilio":
 					tipoAlta = info
 				info = ""
-		print(text_petición+" "+tipoAlta+" "+matOrDni+" "+info)
+		print(text_peticion+" "+tipoAlta+" "+matOrDni+" "+info)
 		if text_peticion == "Alta":
 			if  tipoAlta == "avistamiento":
 				response_index = crear_avistamiento()
