@@ -26,8 +26,22 @@ def index():
 	if text_consulta == "5":
 		response_index = crear_auxilio()
 	if text_consulta == "6":
+		info = ""
+		matOrDni = ""
 		text_query = text_result["resolvedQuery"]
-		print(text_query)
+		text_peticion = text_pa["peticion"]
+		for i in text_query:
+			info += i
+			if i == " ":
+				if info == "matricula" or "dni":
+					matOrDni = info
+				info = ""
+		print(info)
+		print (matOrDni)
+		if text_peticion == "Alta":
+			
+		if text_petición == "Consulta":
+			
 		response_index = text_query
 		
 	return response_index
