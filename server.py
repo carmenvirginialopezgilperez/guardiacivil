@@ -12,6 +12,7 @@ cors = CORS(app)
 def index():
 	response_index = ""
 	text_total = request.json
+	print(text_total)
 	text_result = text_total["result"]
 	text_pa = text_result["parameters"]
 	text_consulta = text_pa["consulta"]
