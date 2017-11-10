@@ -26,17 +26,17 @@ def index():
 		return crear_auxilio()
 	if text_consulta == "6":
 		info = ""
-		matOrDni = ""
+		print(text_pa["peticionSaludo"])
+		matOrDni = text_pa["peticionSaludo"]
 		tipoAlta = ""
 		cont = 0
 		text_query = text_result["resolvedQuery"]
 		text_peticion = text_pa["peticion"]
-		print(text_query+text_peticion)
 		for i in text_query:
 			if i == " ":
-				if info == "matricula" or info == "dni" or info == "DNI" or info == "Dni" or info == "Matricula" or info == "Matrícula" or info == "matrícula":
-					matOrDni = info
-				elif info == "avistamiento" or info == "identificacion" or info == "identificación" or info == "auxilio":
+				#if info == "matricula" or info == "dni" or info == "DNI" or info == "Dni" or info == "Matricula" or info == "Matrícula" or info == "matrícula":
+				#	matOrDni = info
+				if info == "avistamiento" or info == "identificacion" or info == "identificación" or info == "auxilio":
 					tipoAlta = info
 				if not((cont > 0) and (text_query[cont-1] == 0 or text_query[cont-1] == 1 or text_query[cont-1] == 2 or text_query[cont-1] == 3 or text_query[cont-1] == 4 or text_query[cont-1] == 5 or text_query[cont-1] == 6 or text_query[cont-1] == 7 or text_query[cont-1] == 8 or text_query[cont-1] == 9)):
 					info = ""
