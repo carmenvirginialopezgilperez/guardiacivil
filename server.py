@@ -15,6 +15,7 @@ def index():
 	text_pa = text_result["parameters"]
 	text_consulta = text_pa["consulta"]
 	if text_consulta == "1":
+		print("11111")
 		return persona_preguntar()
 	if text_consulta == "2":
 		return vehiculo_preguntar()
@@ -98,6 +99,7 @@ def persona_preguntar():
 	text_total = request.json
 	text_result = text_total["result"]
 	text_pa = text_result["parameters"]
+	print("22222")
 	text_un = text_pa["dni"]
 	data = {}
 	data['dni'] = text_un
@@ -123,6 +125,7 @@ def persona_preguntar():
 	respuesta_re = respuesta_pro["resenas"]
 	respuesta_item = respuesta_re["items"]
 	respuesta_img = respuesta_item["ref"]
+	print("333333")
 	final = respuesta_nombre+"$"+respuesta_primerApellido+"$"+respuesta_segundoApellido+"$"+respuesta_fechaNacimiento+"$"+respuesta_img
 	final_texto={"speech":final,"displayText":final,"data":{},"contextOut":[],"source":"webhook"}
 	json_data_final = json.dumps(final_texto)
