@@ -31,6 +31,7 @@ def index():
 		cont = 0
 		text_query = text_result["resolvedQuery"]
 		text_peticion = text_pa["peticion"]
+		print(text_query+text_peticion)
 		for i in text_query:
 			if i == " ":
 				if info == "matricula" or info == "dni" or info == "DNI" or info == "Dni" or info == "Matricula" or info == "Matrícula" or info == "matrícula":
