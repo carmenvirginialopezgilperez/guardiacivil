@@ -197,9 +197,6 @@ def crear_avistamiento():
 ###################
 @app.route('/vehiculos', methods=["POST"])
 def vehiculo_preguntar2(matricula):
-	text_total = request.json
-	text_result = text_total["result"]
-	text_pa = text_result["parameters"]
 	text_un = matricula
 	data = {}
 	data['matricula'] = text_un
@@ -225,9 +222,6 @@ def vehiculo_preguntar2(matricula):
 
 @app.route('/alias', methods=["POST"])
 def persona_preguntar2(dni):
-	text_total = request.json
-	text_result = text_total["result"]
-	text_pa = text_result["parameters"]
 	text_un = dni
 	data = {}
 	data['dni'] = text_un
@@ -260,9 +254,6 @@ def persona_preguntar2(dni):
 
 @app.route('/auxilio', methods=["POST"])
 def crear_auxilio2(dni):
-	text_total = request.json
-	text_result = text_total["result"]
-	text_pa = text_result["parameters"]
 	text_un = dni
 	data = {}
 	data['dni'] = text_un
@@ -282,9 +273,6 @@ def crear_auxilio2(dni):
 
 @app.route('/identificacion', methods=["POST"])
 def crear_identificacion2(dni):
-	text_total = request.json
-	text_result = text_total["result"]
-	text_pa = text_result["parameters"]
 	text_un = dni
 	data = {}
 	data['dni'] = text_un
@@ -304,9 +292,6 @@ def crear_identificacion2(dni):
 
 @app.route('/avistamiento', methods=["POST"])
 def crear_avistamiento2(matricula):
-	text_total = request.json
-	text_result = text_total["result"]
-	text_pa = text_result["parameters"]
 	text_un = matricula
 	data = {}
 	data['dni'] = text_un
