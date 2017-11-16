@@ -72,7 +72,7 @@ def vehiculo_preguntar():
 	data = {}
 	data['matricula'] = text_un
 	json_data = json.dumps(data)
-	url = 'http://35.184.86.19/vehiculos/?matricula='
+	url = 'http://35.202.165.151/vehiculos/?matricula='
 	url_final = url + text_un
 	respuesta = requests.get(url_final).content
 	s = requests.session()
@@ -100,7 +100,7 @@ def persona_preguntar():
 	data = {}
 	data['dni'] = text_un
 	json_data = json.dumps(data)
-	url = 'http://35.184.86.19/alias/?dni='
+	url = 'http://35.202.165.151/alias/?dni='
 	url_final = url + text_un
 	respuesta = requests.get(url_final).content
 	s = requests.session()
@@ -135,7 +135,7 @@ def crear_auxilio():
 	data = {}
 	data['dni'] = text_un
 	json_data = json.dumps(data)
-	url = 'http://35.184.86.19/registro/?id='
+	url = 'http://35.202.165.151/registro/?id='
 	url_final = url + text_un
 	respuesta = requests.get(url_final).content
 	s = requests.session()
@@ -157,7 +157,7 @@ def crear_identificacion():
 	data = {}
 	data['dni'] = text_un
 	json_data = json.dumps(data)
-	url = 'http://35.184.86.19/registro/?id='
+	url = 'http://35.202.165.151/registro/?id='
 	url_final = url + text_un
 	respuesta = requests.get(url_final).content
 	s = requests.session()
@@ -179,7 +179,7 @@ def crear_avistamiento():
 	data = {}
 	data['dni'] = text_un
 	json_data = json.dumps(data)
-	url = 'http://35.184.86.19/registro/?id='
+	url = 'http://35.202.165.151/registro/?id='
 	url_final = url + text_un
 	respuesta = requests.get(url_final).content
 	s = requests.session()
@@ -199,7 +199,7 @@ def vehiculo_preguntar2(matricula):
 	data = {}
 	data['matricula'] = text_un
 	json_data = json.dumps(data)
-	url = 'http://35.184.86.19/vehiculos/?matricula='
+	url = 'http://35.202.165.151/vehiculos/?matricula='
 	url_final = url + text_un
 	respuesta = requests.get(url_final).content
 	s = requests.session()
@@ -224,7 +224,7 @@ def persona_preguntar2(dni):
 	data = {}
 	data['dni'] = text_un
 	json_data = json.dumps(data)
-	url = 'http://35.184.86.19/alias/?dni='
+	url = 'http://35.202.165.151/alias/?dni='
 	url_final = url + text_un
 	respuesta = requests.get(url_final).content
 	s = requests.session()
@@ -256,7 +256,7 @@ def crear_auxilio2(dni):
 	data = {}
 	data['dni'] = text_un
 	json_data = json.dumps(data)
-	url = 'http://35.184.86.19/registro/?id='
+	url = 'http://35.202.165.151/registro/?id='
 	url_final = url + text_un
 	respuesta = requests.get(url_final).content
 	s = requests.session()
@@ -275,7 +275,7 @@ def crear_identificacion2(dni):
 	data = {}
 	data['dni'] = text_un
 	json_data = json.dumps(data)
-	url = 'http://35.184.86.19/registro/?id='
+	url = 'http://35.202.165.151/registro/?id='
 	url_final = url + text_un
 	respuesta = requests.get(url_final).content
 	s = requests.session()
@@ -294,7 +294,7 @@ def crear_avistamiento2(matricula):
 	data = {}
 	data['dni'] = text_un
 	json_data = json.dumps(data)
-	url = 'http://35.184.86.19/registro/?id='
+	url = 'http://35.202.165.151/registro/?id='
 	url_final = url + text_un
 	respuesta = requests.get(url_final).content
 	s = requests.session()
