@@ -117,7 +117,7 @@ def persona_preguntar():
 	respuesta_segundoApellido = respuesta_pro["nombreCompleto"]["properties"]["segundoApellido"]["title"]
 	#Fecha Nacimiento
 	respuesta_fechaNacimiento = respuesta_pro["fechaNacimiento"]["properties"]["fecha"]["title"]
-	#URL DNI
+	##URL DNI
 	respuesta_re = respuesta_pro["resenas"]
 	respuesta_item = respuesta_re["items"]
 	respuesta_img = respuesta_item["ref"]
