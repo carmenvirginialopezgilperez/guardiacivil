@@ -80,9 +80,9 @@ def vehiculo_preguntar():
 	my_json = respuesta.decode('utf8').replace("'", '"')
 	datajson = json.loads(my_json)
 	respuesta_pro = datajson["properties"]
-	final = "vehiculoconsulta$"
+	final = "vehiculoconsulta¬"
 	for i in respuesta_pro:
-		final += i["matricula"]+"$"+i["marca"]["descripcionLarga"]+"$"+i["modelo"]+"$"+i["colorPrimario"]["descripcionLarga"]+ "$"+i["tipo"]["title"]+"$"+i["numeroBastidor"]
+		final += i["matricula"]+"¬"+i["marca"]["descripcionLarga"]+"¬"+i["modelo"]+"¬"+i["colorPrimario"]["descripcionLarga"]+ "¬"+i["tipo"]["title"]+"¬"+i["numeroBastidor"]
 		final += "*"
 	final = final[:-1]
 	print(final)
