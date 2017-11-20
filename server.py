@@ -83,7 +83,7 @@ def vehiculo_preguntar():
 	final = "vehiculoconsulta¬"
 	for i in respuesta_pro:
 		final += i["matricula"]+"¬"+i["marca"]["descripcionLarga"]+"¬"+i["modelo"]+"¬"+i["colorPrimario"]["descripcionLarga"]+ "¬"+i["tipo"]["title"]+"¬"+i["numeroBastidor"]
-		final += "*"
+		final += ""
 	final = final[:-1]
 	print(final)
 	final_texto={"speech":final,"displayText":final,"data":{},"contextOut":[],"source":"webhook"}
