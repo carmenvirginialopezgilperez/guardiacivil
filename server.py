@@ -69,7 +69,7 @@ def vehiculo_preguntar():
 	text_result = text_total["result"]
 	text_pa = text_result["parameters"]
 	text_un = text_pa["matricula"]
-	if text_un ==  "Consulta vehiculo":
+	if text_un ==  "Consulta vehiculo" || text_un == "Consulta persona" || text_un == "Alta" || text_un =="Avistamiento" || text_un == "Auxilio" || text_un == "Identificacion":
 		final_texto = "errorV"
 		json_data_final = json.dumps(final_texto)
 		return Response(json_data_final, status=200, mimetype="application/json")
@@ -101,7 +101,7 @@ def persona_preguntar():
 	text_result = text_total["result"]
 	text_pa = text_result["parameters"]
 	text_un = text_pa["dni"]
-	if text_un ==  "Consulta persona":
+	if text_un ==  "Consulta vehiculo" || text_un == "Consulta persona" || text_un == "Alta" || text_un =="Avistamiento" || text_un == "Auxilio" || text_un == "Identificacion":
 		final_texto = "errorV"
 		json_data_final = json.dumps(final_texto)
 		return Response(json_data_final, status=200, mimetype="application/json")
@@ -140,7 +140,7 @@ def crear_auxilio():
 	text_result = text_total["result"]
 	text_pa = text_result["parameters"]
 	text_un = text_pa["dni"]
-	if text_un ==  "Auxilio":
+	if text_un ==  "Consulta vehiculo" || text_un == "Consulta persona" || text_un == "Alta" || text_un =="Avistamiento" || text_un == "Auxilio" || text_un == "Identificacion":
 		final_texto = "errorV"
 		json_data_final = json.dumps(final_texto)
 		return Response(json_data_final, status=200, mimetype="application/json")
@@ -166,7 +166,7 @@ def crear_identificacion():
 	text_result = text_total["result"]
 	text_pa = text_result["parameters"]
 	text_un = text_pa["dni"]
-	if text_un ==  "Identificacion":
+	if text_un ==  "Consulta vehiculo" || text_un == "Consulta persona" || text_un == "Alta" || text_un =="Avistamiento" || text_un == "Auxilio" || text_un == "Identificacion":
 		final_texto = "errorV"
 		json_data_final = json.dumps(final_texto)
 		return Response(json_data_final, status=200, mimetype="application/json")
@@ -192,7 +192,7 @@ def crear_avistamiento():
 	text_result = text_total["result"]
 	text_pa = text_result["parameters"]
 	text_un = text_pa["matricula"]
-	if text_un ==  "Avistamiento":
+	if text_un ==  "Consulta vehiculo" || text_un == "Consulta persona" || text_un == "Alta" || text_un =="Avistamiento" || text_un == "Auxilio" || text_un == "Identificacion":
 		final_texto = "errorV"
 		json_data_final = json.dumps(final_texto)
 		return Response(json_data_final, status=200, mimetype="application/json")
