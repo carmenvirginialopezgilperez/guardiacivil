@@ -227,10 +227,10 @@ def vehiculo_preguntar2(matricula):
 	my_json = respuesta.decode('utf8').replace("'", '"')
 	datajson = json.loads(my_json)
 	respuesta_pro = datajson["properties"]
-	final = ""
+	final = "vehiculoconsulta¬"
 	for i in respuesta_pro:
-		final += i["matricula"]+"$"+i["marca"]["descripcionLarga"]+"$"+i["modelo"]+"$"+i["colorPrimario"]["descripcionLarga"]+ "$"+i["tipo"]["title"]+"$"+i["numeroBastidor"]
-		final += "*"
+		final += i["matricula"]+"¬"+i["marca"]["descripcionLarga"]+"¬"+i["modelo"]+"¬"+i["colorPrimario"]["descripcionLarga"]+ "¬"+i["tipo"]["title"]+"¬"+i["numeroBastidor"]
+		final += "¡"
 	final = final[:-1]
 	print(final)
 	final_texto={"speech":final,"displayText":final,"data":{},"contextOut":[],"source":"webhook"}
@@ -265,7 +265,7 @@ def persona_preguntar2(dni):
 	respuesta_re = respuesta_pro["resenas"]
 	respuesta_item = respuesta_re["items"]
 	respuesta_img = respuesta_item["ref"]
-	final = respuesta_nombre+"$"+respuesta_primerApellido+"$"+respuesta_segundoApellido+"$"+respuesta_fechaNacimiento+"$"+respuesta_img
+	final = "personaconsulta¬"+respuesta_nombre+"¬"+respuesta_primerApellido+"¬"+respuesta_segundoApellido+"¬"+respuesta_fechaNacimiento+"¬"+respuesta_img
 	final_texto={"speech":final,"displayText":final,"data":{},"contextOut":[],"source":"webhook"}
 	json_data_final = json.dumps(final_texto)
 	return Response(json_data_final, status=200, mimetype="application/json")
