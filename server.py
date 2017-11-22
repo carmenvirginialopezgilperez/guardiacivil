@@ -71,7 +71,7 @@ def vehiculo_preguntar():
 	text_pa = text_result["parameters"]
 	text_un = text_pa["matricula"]
 	if text_un ==  "Consulta vehiculo":
-		final_texto = "error"
+		final_texto = "errorV"
 		json_data_final = json.dumps(final_texto)
 		return Response(json_data_final, status=200, mimetype="application/json")
 	data = {}
