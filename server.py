@@ -65,7 +65,6 @@ def index():
 
 @app.route('/vehiculos', methods=["POST"])
 def vehiculo_preguntar():
-	
 	text_total = request.json
 	text_result = text_total["result"]
 	text_pa = text_result["parameters"]
@@ -102,6 +101,10 @@ def persona_preguntar():
 	text_result = text_total["result"]
 	text_pa = text_result["parameters"]
 	text_un = text_pa["dni"]
+	if text_un ==  "Consulta persona":
+		final_texto = "errorV"
+		json_data_final = json.dumps(final_texto)
+		return Response(json_data_final, status=200, mimetype="application/json")
 	data = {}
 	data['dni'] = text_un
 	json_data = json.dumps(data)
@@ -137,6 +140,10 @@ def crear_auxilio():
 	text_result = text_total["result"]
 	text_pa = text_result["parameters"]
 	text_un = text_pa["dni"]
+	if text_un ==  "Auxilio":
+		final_texto = "errorV"
+		json_data_final = json.dumps(final_texto)
+		return Response(json_data_final, status=200, mimetype="application/json")
 	data = {}
 	data['dni'] = text_un
 	json_data = json.dumps(data)
@@ -159,6 +166,10 @@ def crear_identificacion():
 	text_result = text_total["result"]
 	text_pa = text_result["parameters"]
 	text_un = text_pa["dni"]
+	if text_un ==  "Identificacion":
+		final_texto = "errorV"
+		json_data_final = json.dumps(final_texto)
+		return Response(json_data_final, status=200, mimetype="application/json")
 	data = {}
 	data['dni'] = text_un
 	json_data = json.dumps(data)
@@ -181,6 +192,10 @@ def crear_avistamiento():
 	text_result = text_total["result"]
 	text_pa = text_result["parameters"]
 	text_un = text_pa["matricula"]
+	if text_un ==  "Avistamiento":
+		final_texto = "errorV"
+		json_data_final = json.dumps(final_texto)
+		return Response(json_data_final, status=200, mimetype="application/json")
 	data = {}
 	data['dni'] = text_un
 	json_data = json.dumps(data)
